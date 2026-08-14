@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEW Legacy LLC — Quality Rental Homes in East Texas</title>
+  <meta name="description" content="CEW Legacy LLC owns and manages residential rental properties in Palestine and Elkhart, Texas. Family-owned, locally operated." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep:    #141414;
+      --bg-surface: #1e1e1e;
+      --bg-card:    #252525;
+      --border:     #333333;
+      --cream:      #e8d5b0;
+      --muted:      #8a8275;
+      --bronze:     #b87333;
+      --bronze-dk:  #9a5f28;
+      --gold:       #d4a843;
+      --gold-lt:    #f0cc6e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--cream);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--gold-lt); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(20,20,20,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--bronze);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+    .wordmark-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .wordmark-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+    .wordmark-sub {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      background: var(--bronze);
+      color: var(--cream) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: var(--bronze-dk) !important; color: var(--cream) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--bronze);
+      background: rgba(184,115,51,0.12);
+      border: 1px solid rgba(184,115,51,0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--bronze);
+      color: var(--cream);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--bronze-dk); color: var(--cream); }
+    .btn-secondary {
+      display: inline-block;
+      border: 1px solid var(--border);
+      color: var(--cream);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: border-color 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--bronze); color: var(--cream); }
+
+    .hero-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .hero-card-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .hero-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+    .hero-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--bronze);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--bronze);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-body {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* ── ABOUT ── */
+    .about-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 20px; }
+    .value-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .value-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(184,115,51,0.12);
+      border: 1px solid rgba(184,115,51,0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .value-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .value-text p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── PROPERTIES ── */
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .prop-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.15s;
+    }
+    .prop-card:hover { border-color: var(--bronze); }
+    .prop-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .prop-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .prop-card p { font-size: 13px; color: var(--muted); }
+
+    /* ── APPLY BANNER ── */
+    .apply-banner {
+      background: linear-gradient(135deg, rgba(184,115,51,0.15) 0%, rgba(212,168,67,0.08) 100%);
+      border: 1px solid rgba(184,115,51,0.3);
+      border-radius: 16px;
+      padding: 48px;
+      text-align: center;
+      margin-top: 16px;
+    }
+    .apply-banner h2 {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .apply-banner p {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-text { font-size: 14px; color: var(--muted); }
+    .contact-text strong { display: block; color: var(--cream); font-size: 15px; margin-bottom: 2px; }
+    .contact-text a { color: var(--gold); }
+
+    .sms-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .sms-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .sms-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+    .sms-card a { font-size: 13px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy { font-size: 13px; color: var(--muted); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--muted); }
+    .footer-links a:hover { color: var(--cream); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 48px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .properties-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+      .apply-banner { padding: 32px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="wordmark">
+      <div class="logo-mark">CL</div>
+      <div class="wordmark-text">
+        <span class="wordmark-name">CEW Legacy LLC</span>
+        <span class="wordmark-sub">Property Management</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#properties">Properties</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://app.cewlegacy.com/apply" class="nav-cta">Apply Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-badge">Palestine &amp; Elkhart, Texas</div>
+    <h1>Quality Rental Homes in <span>East Texas</span></h1>
+    <p>CEW Legacy LLC owns and manages residential rental properties throughout the Palestine and Elkhart area. Family-owned, locally operated, and committed to our community.</p>
+    <div class="hero-actions">
+      <a href="https://app.cewlegacy.com/apply" class="btn-primary">Apply for a Home</a>
+      <a href="#contact" class="btn-secondary">Contact Us</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <p class="hero-card-title">Portfolio at a glance</p>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-number">17</div>
+        <div class="stat-label">Properties managed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Communities served</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">TX</div>
+        <div class="stat-label">Locally owned</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Residential</div>
+      </div>
+    </div>
+    <hr class="hero-divider" />
+    <div class="hero-location">
+      <div class="dot"></div>
+      Palestine &amp; Elkhart, Anderson County, TX
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-bg" id="about">
+  <div class="section-inner">
+    <p class="section-label">Who we are</p>
+    <h2 class="section-title">Built on community, built to last</h2>
+    <p class="section-body">
+      CEW Legacy LLC is a family-owned residential property management company rooted in East Texas. We manage our own portfolio of rental homes, giving tenants a direct line to ownership — no management middlemen, no call centers.
+    </p>
+    <div class="about-grid">
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-icon">🏡</div>
+          <div class="value-text">
+            <h3>Owner-operated</h3>
+            <p>Every property is owned and managed directly by CEW Legacy LLC. When you call, you reach us.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">📍</div>
+          <div class="value-text">
+            <h3>Local roots</h3>
+            <p>We live and work in the same communities our tenants call home — Palestine and Elkhart, TX.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🤝</div>
+          <div class="value-text">
+            <h3>Straightforward process</h3>
+            <p>Apply online, hear back quickly, and move in without the runaround. No surprises.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🔒</div>
+          <div class="value-text">
+            <h3>Your privacy matters</h3>
+            <p>We collect only what we need to process your application. We never sell your information.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="sms-card">
+          <h3>SMS notifications</h3>
+          <p>If you provide your phone number on a rental application, CEW Legacy LLC may send you a text message with your application link or status update. Message frequency varies — typically 1 to 3 messages per application. Message and data rates may apply.</p>
+          <p>Reply <strong style="color: var(--cream)">STOP</strong> to opt out at any time. Reply <strong style="color: var(--cream)">HELP</strong> for assistance.</p>
+          <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTIES -->
+<section id="properties">
+  <div class="section-inner">
+    <p class="section-label">Our homes</p>
+    <h2 class="section-title">Residential properties across East Texas</h2>
+    <p class="section-body">We manage 17 single-family and residential properties in Palestine and Elkhart. All leases are handled directly through CEW Legacy LLC.</p>
+    <div class="properties-grid">
+      <div class="prop-card">
+        <div class="prop-icon">🏠</div>
+        <h3>Palestine, TX</h3>
+        <p>Single-family homes in established Palestine neighborhoods. Close to schools, shopping, and services.</p>
+      </div>
+      <div class="prop-card">
+        <div class="prop-icon">🌳</div>
+        <h3>Elkhart, TX</h3>
+        <p>Quiet residential properties in Elkhart. Small-town living with easy access to the surrounding area.</p>
+      </div>
+      <div class="prop-card">
+        <div class="prop-icon">📋</div>
+        <h3>Apply online</h3>
+        <p>We use a simple online rental application. No SSN required on the form. Contact us to get a link for an available property.</p>
+      </div>
+    </div>
+    <div class="apply-banner">
+      <h2>Interested in one of our homes?</h2>
+      <p>Contact us and we will send you a direct application link for the available property.</p>
+      <a href="#contact" class="btn-primary">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">We are easy to reach</h2>
+    <p class="section-body">Have questions about an available property or your application? Reach out directly — no phone trees or ticketing systems.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <strong>Email</strong>
+            <a href="mailto:cewlegacyllc@gmail.com">cewlegacyllc@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <strong>Location</strong>
+            Palestine &amp; Elkhart, Texas
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text">
+            <strong>SMS</strong>
+            We may text you about your rental application. Reply STOP to opt out at any time.
+          </div>
+        </div>
+      </div>
+      <div class="sms-card">
+        <h3>Ready to apply?</h3>
+        <p>Contact us at the email above and we will send you a direct link to apply for the property you are interested in. The application takes about 10 minutes and can be completed on your phone.</p>
+        <p style="margin-bottom: 0;">No Social Security number required. No application fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 CEW Legacy LLC · Palestine, TX</span>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms &amp; Conditions</a>
+      <a href="mailto:cewlegacyllc@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
