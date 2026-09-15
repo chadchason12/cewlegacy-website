@@ -9,9 +9,9 @@ This file gives Claude everything it needs to help manage the CEW Legacy Homes w
 **cewlegacy.com** is the public website for CEW Legacy Homes, a family-owned house renovation (house-flipping) company in Palestine, TX and surrounding East Texas. Chad Chason owns the company. CEW Legacy LLC was founded in 2020; CEW Legacy Homes was formed in 2026.
 
 The site's job is to:
-- Tell prospective buyers about the company and its renovation philosophy
-- Showcase the active renovation project ("Active Legacy Project")
+- Show prospective buyers the active renovation project ("Active Legacy Project")
 - Collect buyer interest via the "Get Notified" opt-in form (name, phone, email, bed/bath/price preference)
+- Tell the company's story and values
 - Handle legal compliance for SMS messaging (Twilio A2P) — listing alert notifications
 - Give contact info (info@cewlegacy.com)
 
@@ -23,9 +23,21 @@ The site's job is to:
 - **GitHub repo:** https://github.com/chadchason12/cewlegacy-website
 - **Hosting:** Vercel — auto-deploys when you push to the `main` branch on GitHub
 - **Domain/DNS:** Managed through Cloudflare (cewlegacy.com)
-- **Contact email on site:** cewlegacyllc@gmail.com
+- **Contact email on site:** info@cewlegacy.com
 
 The site has no backend, no database, and no login. It is pure HTML and CSS files.
+
+---
+
+## Page section order (as of Sep 2026)
+
+1. Nav
+2. Active Legacy Project (first thing visitors see — QR code on yard sign drives traffic here)
+3. Get Notified form
+4. Hero / intro copy
+5. About
+6. Contact
+7. Footer
 
 ---
 
@@ -33,11 +45,11 @@ The site has no backend, no database, and no login. It is pure HTML and CSS file
 
 | File | What it is |
 |---|---|
-| `index.html` | The main homepage — everything the public sees first |
-| `privacy.html` | Privacy Policy and SMS Terms (combined page) at cewlegacy.com/privacy |
-| `terms.html` | SMS Terms and Conditions at cewlegacy.com/terms |
-| `sms-consent-script.html` | Internal script for verbal SMS consent (used by Twilio A2P compliance) at cewlegacy.com/sms-consent-script |
-| `vercel.json` | Tells Vercel to use clean URLs (no .html in the address bar) and no trailing slashes |
+| `index.html` | The main homepage — everything the public sees |
+| `privacy.html` | Privacy Policy at cewlegacy.com/privacy |
+| `terms.html` | SMS Terms & Conditions at cewlegacy.com/terms |
+| `sms-consent-script.html` | Legacy verbal consent script — can be removed after Twilio campaign is approved |
+| `vercel.json` | Tells Vercel to use clean URLs (no .html in the address bar) |
 | `CLAUDE.md` | This file — context for Claude |
 
 ---
@@ -80,7 +92,10 @@ The font is the system font stack (`-apple-system, BlinkMacSystemFont, "Segoe UI
 - **Contact email:** info@cewlegacy.com
 - No phone number listed on the site
 - SMS use case: property listing alert notifications (not rental applications)
-- Twilio A2P campaign: not yet approved — resubmission pending as of September 2026
+- Twilio A2P campaign: submitted Sep 15 2026, pending carrier approval
+- Formspree endpoint: xyezgzwl (already wired up — form submissions go to info@cewlegacy.com)
+
+---
 
 ## Editable sections for Chad's wife (non-developer)
 
@@ -98,27 +113,35 @@ Edit the text inside `<p class="project-bio">`. 2–4 sentences, written natural
 Duplicate the entire `<!-- ── PROPERTY CARD ── -->` block in `index.html`
 and place it after the first one inside `.project-grid`. The layout handles the rest.
 
-### Formspree setup (required for the notify form to work)
-1. Sign up at formspree.io using info@cewlegacy.com
-2. Create a new form and copy the endpoint URL (looks like formspree.io/f/xxxxxxxx)
-3. In `index.html`, find `action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT"`
-4. Replace YOUR_FORMSPREE_ENDPOINT with the actual endpoint ID
+### Formspree (already set up)
+The "Get Notified" form already sends submissions to info@cewlegacy.com via Formspree endpoint `xyezgzwl`. No action needed — just test a submission to confirm delivery.
+
+---
+
+## Get Notified form — what's in it
+
+The form collects: first name, last name, phone (required), email (optional), bedrooms, bathrooms, price range.
+
+It has two required checkboxes:
+1. SMS consent — agrees to receive property listing text notifications
+2. T&C agreement — confirms they've read the Privacy Policy and SMS Terms
+
+Submit button says "Yes, Notify Me." A compliance footer below the button repeats the STOP/HELP instructions and links to both policy pages.
 
 ---
 
 ## SMS compliance pages (important — do not change without understanding why)
 
-The `privacy.html` and `terms.html` pages are required for Twilio's A2P 10DLC compliance review. They explain how CEW Legacy Homes handles SMS opt-in for property listing notifications.
+The `privacy.html` and `terms.html` pages are required for Twilio's A2P 10DLC compliance review.
 
 Key rules:
 - CEW Legacy Homes may send 1 to 3 texts per available property matching a subscriber's preferences
 - Consent is optional — users can email info@cewlegacy.com without providing a phone number
 - No financial data is collected on the interest form
 - No phone numbers or consent data are shared or sold to any third party
+- The privacy policy contains the exact required statement: "We do not sell or share your SMS opt-in data or personal information with third parties for marketing purposes"
 
 Do not remove or water down the opt-out language, the "no data sharing" language, or the message frequency disclosure. These are required by Twilio and the TCPA.
-
-The `sms-consent-script.html` page (verbal consent script) is no longer the primary opt-in method. The web form is. That page can be removed once the Twilio campaign is approved.
 
 ---
 
@@ -126,7 +149,7 @@ The `sms-consent-script.html` page (verbal consent script) is no longer the prim
 
 - Do not add a backend, database, or login system — this site does not need one
 - Do not remove the privacy/terms/SMS pages — they are legally required
-- Do not change the contact email without updating every place it appears (index.html has it in multiple spots)
+- Do not change the contact email without updating every place it appears (index.html, privacy.html, terms.html)
 - Do not commit secrets, passwords, or API keys — there are none in this project and it should stay that way
 
 ---
