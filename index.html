@@ -307,7 +307,21 @@
     .project-stat-label { font-size: 11px; color: var(--muted); }
 
     /* ── NOTIFY FORM ── */
-    .notify-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .notify-bg { background: var(--bg-surface); border-bottom: 1px solid var(--border); }
+
+    /* ── FLOURISH DIVIDER ── */
+    .flourish-divider-bg { background: var(--bg-deep); padding: 44px 24px; }
+    .flourish-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .flourish-line { flex: 1; height: 1px; background: var(--border); }
+    .flourish-mark { flex-shrink: 0; display: block; }
+    .flourish-mark path { stroke: var(--muted); }
     .notify-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -315,10 +329,16 @@
       align-items: start;
       margin-top: 48px;
     }
+    .form-card-frame {
+      background-color: #b7a488;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      border-radius: 18px;
+      padding: 10px;
+    }
     .form-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 32px;
       box-shadow: 0 1px 2px rgba(36,26,18,0.04), 0 16px 32px -12px rgba(36,26,18,0.14);
     }
@@ -530,6 +550,17 @@
   </div>
 </section>
 
+<!-- ── FLOURISH DIVIDER ── -->
+<div class="flourish-divider-bg">
+  <div class="flourish-divider">
+    <span class="flourish-line"></span>
+    <svg class="flourish-mark" width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 14 L13 1 L25 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="flourish-line"></span>
+  </div>
+</div>
+
 <!-- ── NOTIFY FORM ── -->
 <section class="notify-bg" id="notify">
   <div class="section-inner">
@@ -559,6 +590,7 @@
         </div>
       </div>
 
+      <div class="form-card-frame">
       <div class="form-card">
         <form id="notify-form">
 
@@ -607,6 +639,7 @@
           <h3>You're on the list.</h3>
           <p>We will reach out when we have something that matches. Reply STOP to any text to opt out at any time.</p>
         </div>
+      </div>
       </div>
 
     </div>
