@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CEW Legacy Homes</title>
   <meta name="description" content="CEW Legacy Homes renovates single-family homes in Palestine, TX and surrounding East Texas communities. Family-owned, locally operated since 2020." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-deep:    #141414;
-      --bg-surface: #1e1e1e;
-      --bg-card:    #252525;
-      --border:     #333333;
-      --cream:      #e8d5b0;
-      --muted:      #8a8275;
-      --bronze:     #b87333;
-      --bronze-dk:  #9a5f28;
-      --gold:       #d4a843;
-      --gold-lt:    #f0cc6e;
+      --bg-deep:    #f6f0e4;
+      --bg-surface: #ece0c8;
+      --bg-card:    #f1e8d4;
+      --border:     #d9cbab;
+      --cream:      #241a12;
+      --muted:      #6b5540;
+      --bronze:     #40543a;
+      --bronze-dk:  #2e3e29;
+      --gold:       #40543a;
+      --gold-lt:    #2e3e29;
     }
 
     html { scroll-behavior: smooth; }
@@ -26,10 +29,12 @@
     body {
       background: var(--bg-deep);
       color: var(--cream);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 16px;
       line-height: 1.6;
     }
+
+    h1, h2, h3, .section-title { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
 
     a { color: var(--gold); text-decoration: none; }
     a:hover { color: var(--gold-lt); }
@@ -39,7 +44,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(20,20,20,0.95);
+      background: rgba(246,240,228,0.92);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       padding: 0 24px;
@@ -114,8 +119,8 @@
       font-size: 11px; font-weight: 600;
       text-transform: uppercase; letter-spacing: 0.12em;
       color: var(--bronze);
-      background: rgba(184,115,51,0.12);
-      border: 1px solid rgba(184,115,51,0.3);
+      background: rgba(64,84,58,0.12);
+      border: 1px solid rgba(64,84,58,0.3);
       padding: 4px 12px;
       border-radius: 20px;
       margin-bottom: 20px;
@@ -201,8 +206,8 @@
     .value-item { display: flex; gap: 16px; align-items: flex-start; }
     .value-icon {
       width: 40px; height: 40px;
-      background: rgba(184,115,51,0.12);
-      border: 1px solid rgba(184,115,51,0.25);
+      background: rgba(64,84,58,0.12);
+      border: 1px solid rgba(64,84,58,0.25);
       border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; flex-shrink: 0;
@@ -257,8 +262,8 @@
       font-size: 10px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.12em;
       color: var(--bronze);
-      background: rgba(184,115,51,0.12);
-      border: 1px solid rgba(184,115,51,0.3);
+      background: rgba(64,84,58,0.12);
+      border: 1px solid rgba(64,84,58,0.3);
       padding: 3px 10px;
       border-radius: 20px;
       margin-bottom: 12px;
