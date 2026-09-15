@@ -231,15 +231,18 @@
        Recommended size: 1200 × 800 px minimum.
        ──────────────────────────────────────────────────── */
     .project-photo-frame {
-      background: #b7a488;
-      padding: 18px;
+      background-color: #b7a488;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      padding: 22px;
     }
     .project-photo {
       width: 100%;
       aspect-ratio: 4/3;
       object-fit: cover;
       display: block;
-      border-radius: 6px;
+      border: 7px solid var(--bg-card);
+      border-radius: 4px;
+      box-shadow: 0 3px 10px rgba(36,26,18,0.3);
       background: var(--bg-card);
     }
     .project-photo-placeholder {
