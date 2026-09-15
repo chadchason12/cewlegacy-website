@@ -224,13 +224,13 @@
     .project-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 44px;
       align-items: stretch;
       margin-top: 48px;
       background-color: #b7a488;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       border-radius: 0;
-      padding: 36px;
+      padding: 56px;
       box-shadow: 0 1px 2px rgba(36,26,18,0.04), 0 20px 40px -16px rgba(36,26,18,0.16);
     }
     /* ── PROPERTY PHOTO ──────────────────────────────────
@@ -461,7 +461,7 @@
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 48px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .project-grid { grid-template-columns: 1fr; gap: 16px; }
+      .project-grid { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
       .project-photo { height: auto; aspect-ratio: 4/3; }
       .notify-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
