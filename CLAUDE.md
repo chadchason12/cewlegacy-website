@@ -45,7 +45,6 @@ After every edit, always commit and push to main. Never hand the user a git comm
 | `contact.html` | Contact page — email, area served, text message policy |
 | `privacy.html` | Privacy Policy — legally required, see restrictions below |
 | `terms.html` | SMS Terms & Conditions — legally required, see restrictions below |
-| `sms-consent-script.html` | Legacy verbal consent script — can be deleted after Twilio campaign is approved |
 | `vercel.json` | Clean URL config (removes .html extensions) — do not touch |
 | `CLAUDE.md` | This file |
 
@@ -169,9 +168,7 @@ Until then, form submissions reach info@cewlegacy.com and can be followed up by 
 - Remove the message frequency disclosure
 - Remove the exact statement: "We do not sell or share your SMS opt-in data or personal information with third parties for marketing purposes"
 
-If the Twilio campaign gets rejected again, these pages will be under review. Do not change them without checking with Chad first.
-
-`sms-consent-script.html` (verbal consent script) is legacy and can be deleted once the Twilio campaign is approved.
+The Twilio A2P 10DLC campaign was approved on 2026-09-15. `sms-consent-script.html` (the legacy verbal consent script) was deleted the same day since it's no longer needed.
 
 ---
 
