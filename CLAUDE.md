@@ -67,22 +67,22 @@ The section order was intentional: QR codes on yard signs drive traffic directly
 
 ## Design system
 
-The site uses a dark theme. All colors are defined as CSS custom properties (variables) at the top of `index.html` inside `:root {}`.
+The site uses a warm, light theme (switched from the original dark theme in Sep 2026). All colors are defined as CSS custom properties (variables) at the top of `index.html` inside `:root {}`. Variable names are historical (e.g. `--bronze` now holds a green, `--cream` now holds a dark ink color) — only the hex values changed, not the names, to keep the edit low-risk. Rename them if that confusion is worth cleaning up later.
 
 | Variable | Hex | Role |
 |---|---|---|
-| `--bg-deep` | `#141414` | Main page background |
-| `--bg-surface` | `#1e1e1e` | Section backgrounds |
-| `--bg-card` | `#252525` | Cards, nested elements |
-| `--border` | `#333333` | All borders and dividers |
-| `--cream` | `#e8d5b0` | Primary text and headings |
-| `--muted` | `#8a8275` | Secondary text, labels, subheadings |
-| `--bronze` | `#b87333` | Accent — buttons, badges, icons, highlights |
-| `--bronze-dk` | `#9a5f28` | Button hover state |
-| `--gold` | `#d4a843` | Links, stat numbers |
-| `--gold-lt` | `#f0cc6e` | Link hover state |
+| `--bg-deep` | `#f6f0e4` | Main page background (cream) |
+| `--bg-surface` | `#ece0c8` | Section backgrounds (deeper cream) |
+| `--bg-card` | `#f1e8d4` | Cards, nested elements |
+| `--border` | `#d9cbab` | All borders and dividers |
+| `--cream` | `#241a12` | Primary text and headings (dark ink brown) |
+| `--muted` | `#6b5540` | Secondary text, labels, subheadings (walnut) |
+| `--bronze` | `#40543a` | Accent — buttons, badges, icons, highlights (forest green) |
+| `--bronze-dk` | `#2e3e29` | Button hover state (deeper forest) |
+| `--gold` | `#40543a` | Links, stat numbers (same forest green) |
+| `--gold-lt` | `#2e3e29` | Link hover state |
 
-**Font:** System font stack — `-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`. No external fonts are loaded.
+**Font:** Google Fonts — `Fraunces` (serif, headlines/h1-h3/.section-title) paired with `Libre Franklin` (sans, body text/UI). Loaded via `<link>` tags in `<head>`.
 
 **She can freely change any of this.** Colors, fonts, layout — all of it is hers to redesign. The only constraint is the SMS compliance pages (privacy.html, terms.html) — see below.
 
