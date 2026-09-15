@@ -314,7 +314,6 @@
       padding: 32px;
     }
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
     .form-group label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
     .form-group input,
@@ -427,12 +426,10 @@
       .notify-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .form-row-2 { grid-template-columns: 1fr; }
-      .form-row-3 { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 480px) {
-      .form-row-3 { grid-template-columns: 1fr; }
       .project-stat-row { grid-template-columns: 1fr; }
     }
   </style>
@@ -587,38 +584,6 @@
           <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" placeholder="you@example.com" />
-          </div>
-
-          <div class="form-row-3">
-            <div class="form-group">
-              <label for="bedrooms">Bedrooms</label>
-              <select id="bedrooms" name="bedrooms">
-                <option value="">Any</option>
-                <option value="2">2 bed</option>
-                <option value="3">3 bed</option>
-                <option value="4">4 bed</option>
-                <option value="4+">4+ bed</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="bathrooms">Bathrooms</label>
-              <select id="bathrooms" name="bathrooms">
-                <option value="">Any</option>
-                <option value="1">1 bath</option>
-                <option value="2">2 bath</option>
-                <option value="2+">2+ bath</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="price_range">Price Range</label>
-              <select id="price_range" name="price_range">
-                <option value="">Any</option>
-                <option value="under_150k">Under $150k</option>
-                <option value="150_200k">$150k–$200k</option>
-                <option value="200_250k">$200k–$250k</option>
-                <option value="over_250k">Over $250k</option>
-              </select>
-            </div>
           </div>
 
           <div class="consent-group">

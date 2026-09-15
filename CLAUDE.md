@@ -117,7 +117,7 @@ Duplicate the entire `<!-- ── PROPERTY CARD ── -->` block and place it a
 
 The form is wired to **Formspree** (endpoint `xyezgzwl`). Submissions go to info@cewlegacy.com automatically. No backend needed.
 
-**What the form collects:** first name, last name, phone (required), email (optional), bedrooms, bathrooms, price range.
+**What the form collects:** first name, last name, phone (required), email (optional). Bedrooms/bathrooms/price range fields were removed (Sep 2026) — just contact info now.
 
 **Consent checkboxes (two separate — required by Twilio):**
 1. SMS consent — agrees to receive property listing text notifications
