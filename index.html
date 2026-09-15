@@ -703,6 +703,15 @@
       if (res.ok) {
         form.style.display = "none";
         document.getElementById("form-success").style.display = "block";
+        const data = new FormData(form);
+        fetch("/api/send-confirmation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            phone: data.get("phone"),
+            first_name: data.get("first_name")
+          })
+        }).catch(() => {});
       } else {
         btn.textContent = "Send My Preferences";
         btn.disabled = false;

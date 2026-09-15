@@ -149,11 +149,13 @@ The submit button says "Yes, Notify Me." A compliance footer repeats STOP/HELP i
 
 ## Twilio A2P SMS
 
-A Twilio A2P 10DLC campaign was submitted on September 15, 2026. Carrier approval is pending (typically a few business days).
+A Twilio A2P 10DLC campaign was submitted and approved on September 15, 2026. Campaign SID `CM27f24e935951510c2a464b03c19aad84`, Messaging Service SID `MGd22f1ae49733f6d0d5841810b20d4aad`, sending number `(903) 522-5109`.
 
-Once approved, the next step is to wire up an auto-confirmation text that fires when someone submits the form. That requires connecting Twilio to Formspree submissions via a small backend or webhook — it has not been built yet.
+**Auto-confirmation text is now live.** When someone submits the "Get Notified" form, `index.html`'s submit handler posts to Formspree as before (so email notifications keep working unchanged), then separately calls `/api/send-confirmation.js` — a Vercel serverless function (no dependencies, no build step — matches the rest of the site) that sends a one-time SMS via Twilio's REST API confirming the signup. That call is fire-and-forget: if the text fails to send, the visitor's form submission still succeeds and they still see the on-page success message.
 
-Until then, form submissions reach info@cewlegacy.com and can be followed up by email or phone.
+The function reads three secrets from Vercel's Environment Variables (Project → Settings → Environment Variables) — `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_MESSAGING_SERVICE_SID`. The Auth Token is a real secret; it was added directly in the Vercel dashboard and has never been shared in chat. If it's ever rotated in Twilio, update it in Vercel and redeploy.
+
+The confirmation text reads: *"Thanks for signing up with CEW Legacy Homes! We'll text you the moment a home matching your interest is ready. Reply STOP to opt out."* — to change the wording, edit the `message` string in `api/send-confirmation.js`.
 
 ---
 
