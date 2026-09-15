@@ -262,6 +262,13 @@
       font-size: 13px;
     }
     .project-photo-placeholder span { font-size: 32px; }
+    .project-header-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
     .project-badge {
       display: inline-block;
       font-size: 10px; font-weight: 700;
@@ -271,9 +278,8 @@
       border: 1px solid rgba(64,84,58,0.3);
       padding: 3px 10px;
       border-radius: 20px;
-      margin-bottom: 12px;
     }
-    .project-address { font-size: 20px; font-weight: 800; color: var(--cream); margin-bottom: 4px; }
+    .project-address { font-size: 20px; font-weight: 800; color: var(--cream); }
     .project-location { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
     /* ── PROPERTY BIO ────────────────────────────────────
        To update: edit the text inside the <p class="project-bio"> tag.
@@ -297,8 +303,12 @@
       box-shadow: 0 2px 6px rgba(36,26,18,0.2);
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      justify-content: center;
+      justify-content: flex-start;
+    }
+    .project-cta-block {
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+      padding-top: 20px;
     }
     .project-sidebar-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
     .project-sidebar-body { font-size: 15px; color: var(--muted); line-height: 1.7; }
@@ -525,9 +535,11 @@
       <!-- Property details + CTA -->
       <div class="project-sidebar-card">
         <div>
-          <div class="project-badge">Active Project</div>
-          <!-- ADDRESS: Update the address text below -->
-          <div class="project-address">1305 E Park Ave</div>
+          <div class="project-header-row">
+            <div class="project-badge">Active Project</div>
+            <!-- ADDRESS: Update the address text below -->
+            <div class="project-address">1305 E Park Ave</div>
+          </div>
           <!-- LOCATION: Update city/state if needed -->
           <div class="project-location">Palestine, TX · Anderson County</div>
 
@@ -543,7 +555,7 @@
             <span class="project-tag">Palestine, TX</span>
           </div>
         </div>
-        <div>
+        <div class="project-cta-block">
           <p class="project-sidebar-body" style="margin-bottom: 16px;">Want to know when this one is ready? Get on our list and we will reach out before it goes anywhere.</p>
           <a href="#notify" class="btn-primary">Get Notified When It's Ready</a>
         </div>
