@@ -1,7 +1,15 @@
-// Sends a one-time SMS confirmation via Twilio after someone submits the
-// "Get Notified" form. Called from index.html right after the Formspree
-// submission succeeds. Runs on Vercel as a serverless function — no
-// dependencies, no build step, matches the rest of this static site.
+// Runs after someone submits the "Get Notified" form (called from index.html
+// right after the Formspree submission succeeds). Two jobs:
+//   1. Record the lead in Supabase (public.buyer_leads) so the CEW Legacy
+//      app/portal can show and notify them about future listings.
+//   2. Send a one-time SMS confirmation via Twilio.
+// Runs on Vercel as a serverless function — no dependencies, no build step,
+// matches the rest of this static site. The Supabase lookup uses the
+// publishable (anon) key, which is safe to use here since RLS on
+// buyer_leads only allows anon to INSERT, never read/update/delete.
+
+const SUPABASE_URL = "https://ouknovnayycezioutacy.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_S7X3C1LXhAXlQfbT-euckg_87aznKmN";
 
 function toE164(raw) {
   const digits = String(raw || "").replace(/\D/g, "");
@@ -10,19 +18,49 @@ function toE164(raw) {
   return null;
 }
 
+async function recordLead({ first_name, last_name, email, phone, sms_consent, terms_consent }) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/buyer_leads`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify({
+      first_name,
+      last_name,
+      email: email || null,
+      phone,
+      sms_consent: sms_consent === "yes",
+      terms_consent: terms_consent === "yes",
+      source: "website",
+    }),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    console.error("Supabase insert error:", errText);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
     return;
   }
 
-  const { phone, first_name } = req.body || {};
+  const { phone, first_name, last_name, email, sms_consent, terms_consent } = req.body || {};
   const to = toE164(phone);
 
   if (!to) {
     res.status(400).json({ error: "Missing or invalid phone number" });
     return;
   }
+
+  // Record the lead regardless of whether the text send below succeeds —
+  // losing a lead because of a Twilio hiccup would be worse than a missed text.
+  await recordLead({ first_name, last_name, email, phone, sms_consent, terms_consent });
 
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
