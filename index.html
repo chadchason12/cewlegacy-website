@@ -259,7 +259,6 @@
       font-size: 13px;
     }
     .project-photo-placeholder span { font-size: 32px; }
-    .project-info { padding: 28px; }
     .project-badge {
       display: inline-block;
       font-size: 10px; font-weight: 700;
@@ -506,14 +505,16 @@
 
     <div class="project-grid">
 
-      <!-- ── PROPERTY CARD ── -->
+      <!-- ── PROPERTY CARD (photo only) ── -->
       <div class="project-card">
-
         <div class="project-photo-frame">
           <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
         </div>
+      </div>
 
-        <div class="project-info">
+      <!-- Sidebar copy: property details + CTA -->
+      <div class="project-sidebar">
+        <div>
           <div class="project-badge">Active Project</div>
           <!-- ADDRESS: Update the address text below -->
           <div class="project-address">1305 E Park Ave</div>
@@ -532,10 +533,6 @@
             <span class="project-tag">Palestine, TX</span>
           </div>
         </div>
-      </div>
-
-      <!-- Sidebar copy -->
-      <div class="project-sidebar">
         <div>
           <p class="project-sidebar-body" style="margin-bottom: 16px;">Want to know when this one is ready? Get on our list and we will reach out before it goes anywhere.</p>
           <a href="#notify" class="btn-primary">Get Notified When It's Ready</a>
