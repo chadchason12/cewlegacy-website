@@ -188,10 +188,14 @@
     }
     .project-intro {
       text-align: center;
-      max-width: 640px;
+      max-width: 960px;
       margin: 0 auto;
     }
-    .project-intro .section-body { margin: 0 auto; }
+    .project-intro .section-body { margin: 0 auto; max-width: 640px; }
+    .project-intro-title {
+      white-space: nowrap;
+      font-size: clamp(13px, 3.5vw, 38px);
+    }
 
     /* ── ABOUT ── */
     .about-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -508,8 +512,7 @@
 <section class="project-section" id="active-project">
   <div class="section-inner">
     <div class="project-intro">
-      <p class="section-label">Active Project</p>
-      <h2 class="section-title">Building On What's Already There</h2>
+      <h2 class="section-title project-intro-title">Building On What's Already There</h2>
       <p class="section-body">CEW Legacy brings thoughtful updates and fresh vision to homes with good bones — going room by room, trade by trade, until it's done right. The goal isn't a house that just looks good in photos; it's a home ready to carry on a legacy that started long before we got there.</p>
     </div>
 
