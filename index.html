@@ -727,16 +727,22 @@
           </div>
 
           <div class="consent-group">
-            <div class="consent-row">
+            <div class="consent-row" style="margin-bottom: 14px;">
               <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" required />
               <label for="sms_consent" class="consent-text">
-                I agree to receive text messages from CEW Legacy LLC (d/b/a CEW Legacy Homes) about properties that match my preferences. Message frequency varies — typically 1 to 3 messages per available property. Message and data rates may apply. I can reply STOP at any time to opt out. Consent is not required to receive information about our homes. By checking this box, I confirm I have reviewed the <a href="/privacy">Privacy Policy</a> and <a href="/terms">SMS Terms &amp; Conditions</a>.
+                I agree to receive text messages from CEW Legacy LLC (d/b/a CEW Legacy Homes) with property listing notifications that match my preferences. Message frequency varies — typically 1 to 3 messages per available property. Msg &amp; data rates may apply. Reply STOP to opt out. Reply HELP for help.
+              </label>
+            </div>
+            <div class="consent-row">
+              <input type="checkbox" id="terms_consent" name="terms_consent" value="yes" required />
+              <label for="terms_consent" class="consent-text">
+                I have read and agree to the <a href="/privacy">Privacy Policy</a> and <a href="/terms">SMS Terms &amp; Conditions</a>. Consent is not required to receive information about our homes.
               </label>
             </div>
           </div>
 
-          <button type="submit" class="form-submit-btn">Send My Preferences</button>
-          <p class="form-note">We will only text you when we have a home that matches. Reply STOP to opt out any time.</p>
+          <button type="submit" class="form-submit-btn">Yes, Notify Me</button>
+          <p class="form-note">Msg &amp; data rates may apply. Message frequency varies. Reply STOP to opt out at any time. Reply HELP for help or contact us at <a href="mailto:info@cewlegacy.com" style="color:var(--muted)">info@cewlegacy.com</a>. See our <a href="/privacy" style="color:var(--muted)">Privacy Policy</a> and <a href="/terms" style="color:var(--muted)">SMS Terms</a>.</p>
         </form>
 
         <div class="form-success" id="form-success">
