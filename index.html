@@ -671,8 +671,7 @@
       </div>
 
       <div class="form-card">
-        <form id="notify-form" action="https://formspree.io/f/xyezgzwl" method="POST">
-          <input type="hidden" name="_next" value="https://cewlegacy.com/?submitted=true#notify" />
+        <form id="notify-form">
 
           <div class="form-row-2">
             <div class="form-group">
@@ -805,12 +804,32 @@
 </footer>
 
 <script>
-  // Show success message after form submit (Formspree redirects back with ?submitted=true)
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("submitted") === "true") {
-    document.getElementById("notify-form").style.display = "none";
-    document.getElementById("form-success").style.display = "block";
-  }
+  document.getElementById("notify-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector(".form-submit-btn");
+    btn.textContent = "Sending…";
+    btn.disabled = true;
+    try {
+      const res = await fetch("https://formspree.io/f/xyezgzwl", {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      });
+      if (res.ok) {
+        form.style.display = "none";
+        document.getElementById("form-success").style.display = "block";
+      } else {
+        btn.textContent = "Send My Preferences";
+        btn.disabled = false;
+        alert("Something went wrong. Please try again or email us at info@cewlegacy.com.");
+      }
+    } catch {
+      btn.textContent = "Send My Preferences";
+      btn.disabled = false;
+      alert("Something went wrong. Please try again or email us at info@cewlegacy.com.");
+    }
+  });
 </script>
 
 </body>
