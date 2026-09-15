@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CEW Legacy Homes</title>
-  <meta name="description" content="CEW Legacy Homes renovates single-family homes in Palestine, TX and surrounding East Texas communities. Family-owned, locally operated since 2020." />
+  <title>Contact — CEW Legacy Homes</title>
+  <meta name="description" content="Get in touch with CEW Legacy Homes — email us about a property, the renovation process, or a house you think we should look at." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -164,6 +164,8 @@
     .promise-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
     .promise-footer { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
     .promise-footer-dot { width: 8px; height: 8px; background: var(--muted); border-radius: 50%; flex-shrink: 0; }
+    .story-text { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+    .story-text:last-child { margin-bottom: 0; }
 
     /* ── SECTION SHARED ── */
     section { padding: 80px 24px; }
@@ -187,27 +189,15 @@
       line-height: 1.7;
       max-width: 640px;
     }
-    .project-intro {
-      text-align: center;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .project-intro .section-body { margin: 0 auto; max-width: 640px; }
-    .project-intro-title {
-      white-space: nowrap;
-      font-size: clamp(13px, 3.5vw, 38px);
-    }
 
     /* ── ABOUT ── */
     .about-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
+      grid-template-columns: 1fr;
       margin-top: 48px;
     }
-    .value-list { display: flex; flex-direction: column; gap: 20px; }
+    .value-list { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
     .value-item { display: flex; gap: 16px; align-items: flex-start; }
     .value-icon {
       width: 40px; height: 40px;
@@ -225,13 +215,15 @@
     .project-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 44px;
-      align-items: stretch;
+      gap: 48px;
+      align-items: start;
       margin-top: 48px;
-      background-color: #b7a488;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      border-radius: 0;
-      padding: 56px;
+    }
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
       box-shadow: 0 1px 2px rgba(36,26,18,0.04), 0 20px 40px -16px rgba(36,26,18,0.16);
     }
     /* ── PROPERTY PHOTO ──────────────────────────────────
@@ -244,9 +236,6 @@
       aspect-ratio: 4/3;
       object-fit: cover;
       display: block;
-      align-self: center;
-      border-radius: 0;
-      box-shadow: 0 2px 6px rgba(36,26,18,0.2);
       background: var(--bg-card);
     }
     .project-photo-placeholder {
@@ -263,13 +252,7 @@
       font-size: 13px;
     }
     .project-photo-placeholder span { font-size: 32px; }
-    .project-header-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 4px;
-    }
+    .project-info { padding: 28px; }
     .project-badge {
       display: inline-block;
       font-size: 10px; font-weight: 700;
@@ -279,8 +262,9 @@
       border: 1px solid rgba(64,84,58,0.3);
       padding: 3px 10px;
       border-radius: 20px;
+      margin-bottom: 12px;
     }
-    .project-address { font-size: 20px; font-weight: 800; color: var(--cream); }
+    .project-address { font-size: 20px; font-weight: 800; color: var(--cream); margin-bottom: 4px; }
     .project-location { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
     /* ── PROPERTY BIO ────────────────────────────────────
        To update: edit the text inside the <p class="project-bio"> tag.
@@ -297,20 +281,7 @@
       padding: 3px 10px;
       border-radius: 20px;
     }
-    .project-sidebar-card {
-      background: var(--bg-card);
-      border-radius: 0;
-      padding: 28px;
-      box-shadow: 0 2px 6px rgba(36,26,18,0.2);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .project-cta-block {
-      border-top: 1px solid var(--border);
-      margin-top: 20px;
-      padding-top: 20px;
-    }
+    .project-sidebar { display: flex; flex-direction: column; gap: 20px; }
     .project-sidebar-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
     .project-sidebar-body { font-size: 15px; color: var(--muted); line-height: 1.7; }
     .project-stat-row {
@@ -329,21 +300,7 @@
     .project-stat-label { font-size: 11px; color: var(--muted); }
 
     /* ── NOTIFY FORM ── */
-    .notify-bg { background: var(--bg-surface); border-bottom: 1px solid var(--border); }
-
-    /* ── FLOURISH DIVIDER ── */
-    .flourish-divider-bg { background: var(--bg-deep); padding: 44px 24px; }
-    .flourish-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-    .flourish-line { flex: 1; height: 1px; background: var(--border); }
-    .flourish-mark { flex-shrink: 0; display: block; }
-    .flourish-mark path { stroke: var(--muted); }
+    .notify-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .notify-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -351,16 +308,10 @@
       align-items: start;
       margin-top: 48px;
     }
-    .form-card-frame {
-      background-color: #b7a488;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      border-radius: 18px;
-      padding: 10px;
-    }
     .form-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 32px;
       box-shadow: 0 1px 2px rgba(36,26,18,0.04), 0 16px 32px -12px rgba(36,26,18,0.14);
     }
@@ -481,8 +432,8 @@
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 48px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .project-grid { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
-      .project-photo { height: auto; aspect-ratio: 4/3; }
+      .value-list { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; gap: 32px; }
       .notify-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .form-row-2 { grid-template-columns: 1fr; }
@@ -508,166 +459,46 @@
       <li><a href="/">Home</a></li>
       <li><a href="/about">About</a></li>
       <li><a href="/contact">Contact</a></li>
-      <li><a href="#notify" class="nav-cta">Get Notified</a></li>
+      <li><a href="/#notify" class="nav-cta">Get Notified</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ── ACTIVE LEGACY PROJECT ──────────────────────────────────────────────────
-     HOW TO UPDATE THIS SECTION (for the editor):
-
-     PHOTO: Find the tag <img class="project-photo" ...> below.
-            Change the src= value to the path of your photo file.
-            Example: src="images/1305-front.jpg"
-            Recommended photo size: 1200 x 800 px, exterior front shot.
-            Upload the photo to the images/ folder in this project first.
-
-     BIO:   Find the tag <p class="project-bio"> below.
-            Replace the placeholder text with 2–4 sentences about the property.
-            Write it naturally — what drew you to the house, what you're doing, what it will become.
-
-     ADDRESS & LOCATION: Find .project-address and .project-location below.
-
-     NEW PROPERTY: To add a second property, duplicate the entire .project-card div
-                   and place it after the first one. The layout will stack automatically.
-──────────────────────────────────────────────────────────────────────────── -->
-<section class="project-section" id="active-project">
+<!-- ── CONTACT ── -->
+<section id="contact">
   <div class="section-inner">
-    <div class="project-intro">
-      <h2 class="section-title project-intro-title">Building On What's Already There</h2>
-      <p class="section-body">CEW Legacy brings thoughtful updates and fresh vision to homes with good bones — going room by room, trade by trade, until it's done right. The goal isn't a house that just looks good in photos; it's a home ready to carry on a legacy that started long before we got there.</p>
-    </div>
-
-    <div class="project-grid">
-
-      <!-- ── PROPERTY PHOTO ── -->
-      <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
-
-      <!-- Property details + CTA -->
-      <div class="project-sidebar-card">
-        <div>
-          <div class="project-header-row">
-            <div class="project-badge">Active Project</div>
-            <!-- ADDRESS: Update the address text below -->
-            <div class="project-address">1305 E Park Ave</div>
-          </div>
-          <!-- LOCATION: Update city/state if needed -->
-          <div class="project-location">Palestine, TX · Anderson County</div>
-
-          <!-- BIO: Replace this placeholder with 2–4 sentences about this property. -->
-          <p class="project-bio">
-            This charming 1942 home right on Park Avenue caught our eye with beautiful bones and a gorgeous yard. With 3 bedrooms, 2 bathrooms, plenty of storage, and a separate dining room with original French doors, we're starting with a beauty. Our plan is to bring it up to the luxuries of 2026 without losing an ounce of its charm — new floors throughout, granite in the kitchen and bathrooms, new cabinets, and fresh paint from top to bottom. At 1,700 square feet in the heart of Palestine, this home is going to be a dream in just a matter of a few more weeks!
-          </p>
-
-          <!-- TAGS: Add or remove tags to reflect the scope of work -->
-          <div class="project-tags">
-            <span class="project-tag">Full Renovation</span>
-            <span class="project-tag">Single-Family</span>
-            <span class="project-tag">Palestine, TX</span>
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">We are easy to reach.</h2>
+    <p class="section-body">Questions about a property or the renovation process? Reach out directly.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <strong>Email</strong>
+            <a href="mailto:info@cewlegacy.com">info@cewlegacy.com</a>
           </div>
         </div>
-        <div class="project-cta-block">
-          <p class="project-sidebar-body" style="margin-bottom: 16px;">Want to know when this one is ready? Get on our list and we will reach out before it goes anywhere.</p>
-          <a href="#notify" class="btn-primary">Get Notified When It's Ready</a>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <strong>Area served</strong>
+            Palestine, TX and surrounding East Texas communities
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text">
+            <strong>Text messages</strong>
+            We text only people who have opted in through our form. Reply STOP to any message to opt out immediately. Reply HELP for assistance.
+          </div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── FLOURISH DIVIDER ── -->
-<div class="flourish-divider-bg">
-  <div class="flourish-divider">
-    <span class="flourish-line"></span>
-    <svg class="flourish-mark" width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 14 L13 1 L25 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span class="flourish-line"></span>
-  </div>
-</div>
-
-<!-- ── NOTIFY FORM ── -->
-<section class="notify-bg" id="notify">
-  <div class="section-inner">
-    <p class="section-label">Get notified</p>
-    <h2 class="section-title">Be first to know.</h2>
-
-    <div class="notify-grid">
-
-      <div class="notify-copy">
-        <h3>Get on the list.</h3>
-        <p>Give us your info and we will reach out as soon as a property hits the market.</p>
-        <div class="notify-bullet">
-          <div class="notify-bullet-dot"></div>
-          <span>No obligation — just a heads up when a home is available</span>
-        </div>
-        <div class="notify-bullet">
-          <div class="notify-bullet-dot"></div>
-          <span>We text you the moment a new property is ready</span>
-        </div>
-        <div class="notify-bullet">
-          <div class="notify-bullet-dot"></div>
-          <span>Reply STOP to any text, any time, and we will remove you immediately</span>
-        </div>
-        <div class="notify-bullet">
-          <div class="notify-bullet-dot"></div>
-          <span>Your information is never sold or shared with anyone</span>
-        </div>
+      <div class="contact-card">
+        <h3>Have a specific property in mind?</h3>
+        <p>If there is a house in the area you think we should look at, or if you have questions about the renovation process for your own project, send us an email. We'd love to work with you!</p>
+        <a href="mailto:info@cewlegacy.com" class="btn-primary" style="display:inline-block">Email Us</a>
       </div>
-
-      <div class="form-card-frame">
-      <div class="form-card">
-        <form id="notify-form">
-
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="first_name">First Name *</label>
-              <input type="text" id="first_name" name="first_name" placeholder="Chad" required />
-            </div>
-            <div class="form-group">
-              <label for="last_name">Last Name *</label>
-              <input type="text" id="last_name" name="last_name" placeholder="Chason" required />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" placeholder="(903) 555-0100" required />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" />
-          </div>
-
-          <div class="consent-group">
-            <div class="consent-row" style="margin-bottom: 14px;">
-              <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" required />
-              <label for="sms_consent" class="consent-text">
-                I agree to receive text messages from CEW Legacy LLC (d/b/a CEW Legacy Homes) with property listing notifications that match my preferences. Message frequency varies — typically 1 to 3 messages per available property. Msg &amp; data rates may apply. Reply STOP to opt out. Reply HELP for help.
-              </label>
-            </div>
-            <div class="consent-row">
-              <input type="checkbox" id="terms_consent" name="terms_consent" value="yes" required />
-              <label for="terms_consent" class="consent-text">
-                I have read and agree to the <a href="/privacy">Privacy Policy</a> and <a href="/terms">SMS Terms &amp; Conditions</a>. Consent is not required to receive information about our homes.
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="form-submit-btn">Yes, Notify Me</button>
-          <p class="form-note">Msg &amp; data rates may apply. Message frequency varies. Reply STOP to opt out at any time. Reply HELP for help or contact us at <a href="mailto:info@cewlegacy.com" style="color:var(--muted)">info@cewlegacy.com</a>. See our <a href="/privacy" style="color:var(--muted)">Privacy Policy</a> and <a href="/terms" style="color:var(--muted)">SMS Terms</a>.</p>
-        </form>
-
-        <div class="form-success" id="form-success">
-          <div class="success-icon">✓</div>
-          <h3>You're on the list.</h3>
-          <p>We will reach out when we have something that matches. Reply STOP to any text to opt out at any time.</p>
-        </div>
-      </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -678,43 +509,15 @@
   <div class="footer-inner">
     <span class="footer-copy">© 2026 CEW Legacy Homes · Palestine, TX · Family-owned since 2020</span>
     <div class="footer-links">
+      <a href="/">Home</a>
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
-      <a href="#notify">Get Notified</a>
+      <a href="/#notify">Get Notified</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">SMS Terms</a>
     </div>
   </div>
 </footer>
-
-<script>
-  document.getElementById("notify-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector(".form-submit-btn");
-    btn.textContent = "Sending…";
-    btn.disabled = true;
-    try {
-      const res = await fetch("https://formspree.io/f/xyezgzwl", {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      });
-      if (res.ok) {
-        form.style.display = "none";
-        document.getElementById("form-success").style.display = "block";
-      } else {
-        btn.textContent = "Send My Preferences";
-        btn.disabled = false;
-        alert("Something went wrong. Please try again or email us at info@cewlegacy.com.");
-      }
-    } catch {
-      btn.textContent = "Send My Preferences";
-      btn.disabled = false;
-      alert("Something went wrong. Please try again or email us at info@cewlegacy.com.");
-    }
-  });
-</script>
 
 </body>
 </html>
