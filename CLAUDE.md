@@ -40,28 +40,36 @@ After every edit, always commit and push to main. Never hand the user a git comm
 
 | File | Purpose |
 |---|---|
-| `index.html` | The entire website — all sections live here |
+| `index.html` | Home page — property + notify form only |
+| `about.html` | About page — company story, values, contact |
 | `privacy.html` | Privacy Policy — legally required, see restrictions below |
 | `terms.html` | SMS Terms & Conditions — legally required, see restrictions below |
 | `sms-consent-script.html` | Legacy verbal consent script — can be deleted after Twilio campaign is approved |
 | `vercel.json` | Clean URL config (removes .html extensions) — do not touch |
 | `CLAUDE.md` | This file |
 
+Each HTML page is fully self-contained (own `<style>` block, own copy of shared CSS) — there's no shared stylesheet or templating. A sitewide design change (like the color palette) has to be applied to each page's `<style>` block individually.
+
 ---
 
 ## Current page structure (as of Sep 2026)
 
-Section order on the homepage, top to bottom:
+The site is now two pages (split from one long page in Sep 2026, so buyers landing from the yard sign QR code hit property + signup immediately with nothing else in the way):
 
-1. **Nav** — sticky, logo + nav links + "Get Notified" CTA button
+**Home (`index.html`)**
+1. **Nav** — sticky, logo + nav links (Home / About / Get Notified)
 2. **Active Legacy Project** — property card (photo + address + bio + tags) + sidebar copy + CTA
 3. **Get Notified form** — buyer interest form with SMS consent, wired to Formspree
-4. **Hero** — headline, company description, "What We Stand For" promise card
-5. **About** — company values, mission statement
-6. **Contact** — email, area served, text message policy
-7. **Footer** — copyright, nav links, privacy/terms links
+4. **Footer** — copyright, nav links, privacy/terms links
 
-The section order was intentional: QR codes on yard signs drive traffic directly to the site, so buyers see the active property and the sign-up form before anything else.
+**About (`about.html`)**
+1. **Nav** — same as Home
+2. **Hero** — headline, company description, "What We Stand For" promise card
+3. **About** — company values, mission statement
+4. **Contact** — email, area served, text message policy
+5. **Footer** — same as Home
+
+Cross-page links use absolute paths (`/`, `/about`, `/#notify`, `/about#contact`) since they now point across pages, not to anchors on one page.
 
 ---
 
