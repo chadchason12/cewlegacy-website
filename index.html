@@ -214,15 +214,13 @@
     .project-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
+      gap: 20px;
+      align-items: stretch;
       margin-top: 48px;
-    }
-    .project-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
+      background-color: #b7a488;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      border-radius: 20px;
+      padding: 20px;
       box-shadow: 0 1px 2px rgba(36,26,18,0.04), 0 20px 40px -16px rgba(36,26,18,0.16);
     }
     /* ── PROPERTY PHOTO ──────────────────────────────────
@@ -230,19 +228,13 @@
        actual photo URL or relative path (e.g. images/1305-front.jpg).
        Recommended size: 1200 × 800 px minimum.
        ──────────────────────────────────────────────────── */
-    .project-photo-frame {
-      background-color: #b7a488;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      padding: 22px;
-    }
     .project-photo {
       width: 100%;
-      aspect-ratio: 4/3;
+      height: 100%;
       object-fit: cover;
       display: block;
-      border: 7px solid var(--bg-card);
-      border-radius: 4px;
-      box-shadow: 0 3px 10px rgba(36,26,18,0.3);
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(36,26,18,0.2);
       background: var(--bg-card);
     }
     .project-photo-placeholder {
@@ -287,21 +279,15 @@
       padding: 3px 10px;
       border-radius: 20px;
     }
-    .project-sidebar {
-      background-color: #b7a488;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.14  0 0 0 0 0.1  0 0 0 0 0.07  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      border-radius: 18px;
-      padding: 10px;
-    }
     .project-sidebar-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 6px;
       padding: 28px;
-      box-shadow: 0 1px 2px rgba(36,26,18,0.04), 0 16px 32px -12px rgba(36,26,18,0.14);
+      box-shadow: 0 2px 6px rgba(36,26,18,0.2);
       display: flex;
       flex-direction: column;
       gap: 20px;
+      justify-content: center;
     }
     .project-sidebar-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
     .project-sidebar-body { font-size: 15px; color: var(--muted); line-height: 1.7; }
@@ -465,7 +451,8 @@
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 48px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .project-grid { grid-template-columns: 1fr; gap: 32px; }
+      .project-grid { grid-template-columns: 1fr; gap: 16px; }
+      .project-photo { height: auto; aspect-ratio: 4/3; }
       .notify-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .form-row-2 { grid-template-columns: 1fr; }
@@ -520,16 +507,11 @@
 
     <div class="project-grid">
 
-      <!-- ── PROPERTY CARD (photo only) ── -->
-      <div class="project-card">
-        <div class="project-photo-frame">
-          <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
-        </div>
-      </div>
+      <!-- ── PROPERTY PHOTO ── -->
+      <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
 
-      <!-- Sidebar copy: property details + CTA -->
-      <div class="project-sidebar">
-        <div class="project-sidebar-card">
+      <!-- Property details + CTA -->
+      <div class="project-sidebar-card">
         <div>
           <div class="project-badge">Active Project</div>
           <!-- ADDRESS: Update the address text below -->
@@ -552,7 +534,6 @@
         <div>
           <p class="project-sidebar-body" style="margin-bottom: 16px;">Want to know when this one is ready? Get on our list and we will reach out before it goes anywhere.</p>
           <a href="#notify" class="btn-primary">Get Notified When It's Ready</a>
-        </div>
         </div>
       </div>
 
