@@ -194,12 +194,10 @@
     .about-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
+      grid-template-columns: 1fr;
       margin-top: 48px;
     }
-    .value-list { display: flex; flex-direction: column; gap: 20px; }
+    .value-list { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
     .value-item { display: flex; gap: 16px; align-items: flex-start; }
     .value-icon {
       width: 40px; height: 40px;
@@ -434,6 +432,7 @@
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 48px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .value-list { grid-template-columns: 1fr; }
       .project-grid { grid-template-columns: 1fr; gap: 32px; }
       .notify-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -526,13 +525,6 @@
             <h3>Transparent process</h3>
             <p>We keep buyers informed from day one. When a home is ready, the people on our list hear first — no surprises, no bidding wars.</p>
           </div>
-        </div>
-      </div>
-      <div>
-        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px;">
-          <p class="section-label" style="margin-bottom: 8px;">Our mission</p>
-          <p style="font-size: 16px; color: var(--cream); font-weight: 600; line-height: 1.5; margin-bottom: 14px;">"We want to help Palestine's homes continue their legacy."</p>
-          <p style="font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 0;">There are a lot of homes in East Texas that have good bones and real history — they just need someone willing to put in the work. That is what we do. We find them, we restore them, and we put them back into the community for families to build the next chapter in.</p>
         </div>
       </div>
     </div>
