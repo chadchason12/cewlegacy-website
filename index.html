@@ -230,11 +230,16 @@
        actual photo URL or relative path (e.g. images/1305-front.jpg).
        Recommended size: 1200 × 800 px minimum.
        ──────────────────────────────────────────────────── */
+    .project-photo-frame {
+      background: #b7a488;
+      padding: 18px;
+    }
     .project-photo {
       width: 100%;
       aspect-ratio: 4/3;
       object-fit: cover;
       display: block;
+      border-radius: 6px;
       background: var(--bg-card);
     }
     .project-photo-placeholder {
@@ -481,7 +486,9 @@
       <!-- ── PROPERTY CARD ── -->
       <div class="project-card">
 
-        <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
+        <div class="project-photo-frame">
+          <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
+        </div>
 
         <div class="project-info">
           <div class="project-badge">Active Project</div>
