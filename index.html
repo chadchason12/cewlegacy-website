@@ -59,17 +59,8 @@
       justify-content: space-between;
       height: 64px;
     }
-    .wordmark { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-mark {
-      width: 38px; height: 38px;
-      background: var(--bronze);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 800; color: var(--on-accent);
-      letter-spacing: -1px; flex-shrink: 0;
-    }
-    .wordmark-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .wordmark-name { font-size: 15px; font-weight: 700; color: var(--cream); letter-spacing: 0.02em; }
+    .wordmark { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .brand-logo { height: 46px; width: auto; display: block; }
     .wordmark-sub { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
     .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a { font-size: 14px; color: var(--muted); transition: color 0.15s; }
@@ -450,11 +441,8 @@
 <nav>
   <div class="nav-inner">
     <a href="/" class="wordmark">
-      <div class="logo-mark">CL</div>
-      <div class="wordmark-text">
-        <span class="wordmark-name">CEW Legacy Homes</span>
-        <span class="wordmark-sub">Palestine, Texas</span>
-      </div>
+      <img src="images/logo.svg" alt="CEW Legacy Homes" class="brand-logo" />
+      <span class="wordmark-sub">Palestine, Texas</span>
     </a>
     <ul class="nav-links">
       <li><a href="#active-project">Active Project</a></li>
