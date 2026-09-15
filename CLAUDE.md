@@ -41,7 +41,8 @@ After every edit, always commit and push to main. Never hand the user a git comm
 | File | Purpose |
 |---|---|
 | `index.html` | Home page — property + notify form only |
-| `about.html` | About page — company story, values, contact |
+| `about.html` | About page — hero + family story, company values |
+| `contact.html` | Contact page — email, area served, text message policy |
 | `privacy.html` | Privacy Policy — legally required, see restrictions below |
 | `terms.html` | SMS Terms & Conditions — legally required, see restrictions below |
 | `sms-consent-script.html` | Legacy verbal consent script — can be deleted after Twilio campaign is approved |
@@ -54,22 +55,29 @@ Each HTML page is fully self-contained (own `<style>` block, own copy of shared 
 
 ## Current page structure (as of Sep 2026)
 
-The site is now two pages (split from one long page in Sep 2026, so buyers landing from the yard sign QR code hit property + signup immediately with nothing else in the way):
+The site is three pages (split from one long page in Sep 2026, so buyers landing from the yard sign QR code hit property + signup immediately with nothing else in the way; Contact was later split out of About into its own page too):
 
 **Home (`index.html`)**
-1. **Nav** — sticky, logo + nav links (Home / About / Get Notified)
-2. **Active Legacy Project** — property card (photo + address + bio + tags) + sidebar copy + CTA
-3. **Get Notified form** — buyer interest form with SMS consent, wired to Formspree
-4. **Footer** — copyright, nav links, privacy/terms links
+1. **Nav** — sticky, logo only (no nav-bar tagline text), links to Home / About / Contact / Get Notified
+2. **Active Project** — centered intro headline + paragraph, then a single taupe "diptych" frame holding the property photo and a details/CTA card side by side
+3. **Flourish divider** — small roofline glyph between sections, echoing the logo
+4. **Get Notified form** — buyer interest form with SMS consent, wired to Formspree, framed to match the photo
+5. **Footer** — italic tagline, copyright, nav links, privacy/terms links
 
 **About (`about.html`)**
 1. **Nav** — same as Home
-2. **Hero** — headline, company description, "What We Stand For" promise card
-3. **About** — company values, mission statement
-4. **Contact** — email, area served, text message policy
-5. **Footer** — same as Home
+2. **Hero** — headline + company description, beside a card telling the family's story (Carl, the company's founding, who runs it today)
+3. **About** — "Every house has a story worth keeping" intro + a 2x2 grid of company values (no more separate "mission" box — folded into the story)
+4. **Footer** — same as Home
 
-Cross-page links use absolute paths (`/`, `/about`, `/#notify`, `/about#contact`) since they now point across pages, not to anchors on one page.
+**Contact (`contact.html`)**
+1. **Nav** — same as Home
+2. **Contact** — email, area served, text message policy, "email us about your own property" card
+3. **Footer** — same as Home
+
+The site also has a thin forest-green accent bar above the nav on every page, and the nav has a soft shadow instead of a hard border line.
+
+Cross-page links use absolute paths (`/`, `/about`, `/contact`, `/#notify`) since they now point across pages, not to anchors on one page.
 
 ---
 
@@ -89,6 +97,9 @@ The site uses a warm, light theme (switched from the original dark theme in Sep 
 | `--bronze-dk` | `#2e3e29` | Button hover state (deeper forest) |
 | `--gold` | `#40543a` | Links, stat numbers (same forest green) |
 | `--gold-lt` | `#2e3e29` | Link hover state |
+| `--on-accent` | `#f6f0e4` | Text sitting on top of a `--bronze` (green) background — buttons, the nav CTA, the logo mark |
+
+There's also a warm taupe, `#b7a488`, used (with a faint grain texture) as the "picture mat" frame behind the property photo and the notify-form card — it's a literal color, not a CSS variable, used in a couple of `background-image` declarations.
 
 **Font:** Google Fonts — `Fraunces` (serif, headlines/h1-h3/.section-title) paired with `Libre Franklin` (sans, body text/UI). Loaded via `<link>` tags in `<head>`.
 
