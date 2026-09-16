@@ -31,6 +31,8 @@ async function recordLead({ first_name, last_name, email, phone, sms_consent, te
       first_name,
       last_name,
       email: email || null,
+      // Stored in E.164 (+1XXXXXXXXXX) so it matches the format Twilio
+      // reports in opt-out webhooks — needed to reliably flag unsubscribes.
       phone,
       sms_consent: sms_consent === "yes",
       terms_consent: terms_consent === "yes",
@@ -60,7 +62,7 @@ export default async function handler(req, res) {
 
   // Record the lead regardless of whether the text send below succeeds —
   // losing a lead because of a Twilio hiccup would be worse than a missed text.
-  await recordLead({ first_name, last_name, email, phone, sms_consent, terms_consent });
+  await recordLead({ first_name, last_name, email, phone: to, sms_consent, terms_consent });
 
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
