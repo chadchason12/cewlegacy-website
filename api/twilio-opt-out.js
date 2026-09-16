@@ -1,14 +1,21 @@
-// Twilio calls this automatically whenever someone texts STOP, START, or a
-// similar keyword to the number tied to our Messaging Service — configured
-// as the Messaging Service's "Opt-Out Callback URL" in the Twilio console
-// (see CLAUDE.md for setup steps). Twilio's Advanced Opt-Out feature already
-// blocks messages to opted-out numbers on its own; this just keeps
-// public.buyer_leads.unsubscribed in sync so the company app's lead list
-// reflects reality instead of silently going stale.
+// Twilio calls this on every inbound text to our Messaging Service —
+// configured as the Messaging Service's general inbound webhook (Twilio
+// console: Messaging → Services → the service → Settings → "Incoming
+// Messages" / Request URL. See CLAUDE.md for exact steps). Twilio's
+// Advanced Opt-Out feature already blocks sends to opted-out numbers on its
+// own and auto-replies to STOP/START on its own; this just reads the
+// message body for the same keywords so public.buyer_leads.unsubscribed
+// stays in sync — otherwise the company app's lead list would silently go
+// stale instead of reflecting who's actually opted out.
 //
 // Twilio POSTs this as application/x-www-form-urlencoded, not JSON.
 
 const SUPABASE_URL = "https://ouknovnayycezioutacy.supabase.co";
+
+// Matches the keywords configured in Twilio's Opt-Out tab, plus Twilio's
+// standard global keywords as a safety net.
+const STOP_KEYWORDS = ["stop", "stopall", "unsubscribe", "cancel", "end", "quit"];
+const START_KEYWORDS = ["start", "unstop", "yes"];
 
 function toE164(raw) {
   const digits = String(raw || "").replace(/\D/g, "");
@@ -35,20 +42,12 @@ export default async function handler(req, res) {
   const fields = parseFormBody(raw);
 
   const from = toE164(fields.From);
-  // Twilio's Opt-Out Callback sends OptOutType as STOP, START, or HELP.
-  const optOutType = String(fields.OptOutType || "").toUpperCase();
+  const body = String(fields.Body || "").trim().toLowerCase();
 
-  if (!from || !optOutType) {
-    // Always 200 back to Twilio even on bad input — it doesn't retry
-    // meaningfully on errors here, and we don't want retry storms.
-    res.status(200).json({ ok: true, skipped: true });
-    return;
-  }
+  const isStop = STOP_KEYWORDS.includes(body);
+  const isStart = START_KEYWORDS.includes(body);
 
-  const unsubscribed = optOutType === "STOP";
-  const shouldUpdate = optOutType === "STOP" || optOutType === "START";
-
-  if (shouldUpdate) {
+  if (from && (isStop || isStart)) {
     const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     try {
       const updateRes = await fetch(
@@ -61,7 +60,7 @@ export default async function handler(req, res) {
             "Content-Type": "application/json",
             Prefer: "return=minimal",
           },
-          body: JSON.stringify({ unsubscribed }),
+          body: JSON.stringify({ unsubscribed: isStop }),
         }
       );
       if (!updateRes.ok) {
@@ -72,5 +71,8 @@ export default async function handler(req, res) {
     }
   }
 
-  res.status(200).json({ ok: true });
+  // Respond with empty TwiML so Twilio doesn't also send its own reply on
+  // top of the auto-reply Advanced Opt-Out already sends.
+  res.setHeader("Content-Type", "text/xml");
+  res.status(200).send("<Response></Response>");
 }
