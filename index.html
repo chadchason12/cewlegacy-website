@@ -253,15 +253,66 @@
        actual photo URL or relative path (e.g. images/1305-front.jpg).
        Recommended size: 1200 × 800 px minimum.
        ──────────────────────────────────────────────────── */
+    .project-photo-wrap {
+      position: relative;
+      align-self: center;
+    }
     .project-photo {
       width: 100%;
       aspect-ratio: 4/3;
       object-fit: cover;
       display: block;
-      align-self: center;
       border-radius: 0;
       box-shadow: 0 2px 6px rgba(36,26,18,0.2);
       background: var(--bg-card);
+    }
+    .floorplan-link {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      background: rgba(246,240,228,0.92);
+      color: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Libre Franklin', sans-serif;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: background 0.15s;
+    }
+    .floorplan-link:hover { background: var(--bg-deep); }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(36,26,18,0.82);
+      padding: 40px 24px;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { max-width: 900px; max-height: 90vh; position: relative; }
+    .lightbox-inner img {
+      max-width: 100%;
+      max-height: 90vh;
+      display: block;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--bg-deep);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px;
     }
     .project-photo-placeholder {
       width: 100%;
@@ -577,7 +628,10 @@
     <div class="project-grid">
 
       <!-- ── PROPERTY PHOTO ── -->
-      <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
+      <div class="project-photo-wrap">
+        <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
+        <button class="floorplan-link" id="floorplan-open" type="button">⊞ View Floor Plan</button>
+      </div>
 
       <!-- Property details + CTA -->
       <div class="project-sidebar-card">
@@ -611,6 +665,27 @@
     </div>
   </div>
 </section>
+
+<!-- Floor plan lightbox -->
+<div class="lightbox" id="floorplan-lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="floorplan-close" type="button" aria-label="Close">&times;</button>
+    <img src="images/1305-e-park-ave-floorplan.jpg" alt="Floor plan — 1305 E Park Ave" />
+  </div>
+</div>
+<script>
+  (function () {
+    var lightbox = document.getElementById("floorplan-lightbox");
+    var openBtn = document.getElementById("floorplan-open");
+    var closeBtn = document.getElementById("floorplan-close");
+    if (!lightbox || !openBtn) return;
+    openBtn.addEventListener("click", function () { lightbox.classList.add("open"); });
+    closeBtn.addEventListener("click", function () { lightbox.classList.remove("open"); });
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) lightbox.classList.remove("open");
+    });
+  })();
+</script>
 
 <!-- ── FLOURISH DIVIDER ── -->
 <div class="flourish-divider-bg">
