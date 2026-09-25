@@ -114,8 +114,9 @@
 
     /* ── FAMILY PHOTO ── */
     .family-photo-band {
-      max-width: 340px;
-      margin: 28px auto 0;
+      max-width: 1100px;
+      margin: 48px auto 0;
+      padding: 0 24px;
     }
     .family-photo-frame {
       background-color: #b7a488;
@@ -124,10 +125,14 @@
     }
     .family-photo {
       width: 100%;
-      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
       display: block;
       border: 7px solid var(--bg-card);
       box-shadow: 0 3px 10px rgba(36,26,18,0.3);
+    }
+    @media (max-width: 640px) {
+      .family-photo { aspect-ratio: 4/3; }
     }
 
     /* ── HERO ── */
@@ -518,17 +523,18 @@
   });
 </script>
 
+<!-- ── FAMILY PHOTO ── -->
+<div class="family-photo-band">
+  <div class="family-photo-frame">
+    <img class="family-photo" src="images/about-family-photo.jpg" alt="The family behind CEW Legacy Homes" />
+  </div>
+</div>
+
 <!-- ── HERO ── -->
 <div class="hero">
   <div style="text-align: center;">
     <div class="hero-badge">Palestine &amp; East Texas</div>
     <h1>The Story behind<br><span>CEW Legacy Homes…</span></h1>
-    <!-- ── FAMILY PHOTO ── -->
-    <div class="family-photo-band">
-      <div class="family-photo-frame">
-        <img class="family-photo" src="images/about-family-photo.jpg" alt="The family behind CEW Legacy Homes" />
-      </div>
-    </div>
   </div>
   <div class="promise-card">
     <p class="story-text">Decades ago, our dad, Carl, fell in love with homes. He spent years running his own business selling used mobile homes, then turned his focus to owning rental properties across Anderson County — always seeing potential where others saw just another old house.</p>
