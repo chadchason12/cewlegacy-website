@@ -138,13 +138,10 @@
 
     /* ── HERO ── */
     .hero {
-      max-width: 1100px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 96px 24px 96px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
+      padding: 64px 24px 96px;
+      text-align: center;
     }
     .hero-badge {
       display: inline-block;
@@ -181,6 +178,8 @@
       border-radius: 16px;
       padding: 36px 32px;
       box-shadow: 0 1px 2px rgba(36,26,18,0.04), 0 16px 32px -12px rgba(36,26,18,0.14);
+      text-align: left;
+      margin-top: 36px;
     }
     .promise-card-label {
       font-size: 11px; font-weight: 600;
@@ -469,7 +468,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 48px; }
+      .hero { padding: 40px 20px 48px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .value-list { grid-template-columns: 1fr; }
       .project-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -533,10 +532,8 @@
 
 <!-- ── HERO ── -->
 <div class="hero">
-  <div style="text-align: center;">
-    <div class="hero-badge">Serving Palestine &amp; East Texas</div>
-    <h1>The Story behind<br><span>CEW Legacy Homes…</span></h1>
-  </div>
+  <div class="hero-badge">Serving Palestine &amp; East Texas</div>
+  <h1>The Story behind<br><span>CEW Legacy Homes…</span></h1>
   <div class="promise-card">
     <p class="story-text">Decades ago, our dad, Carl, fell in love with homes. He spent years running his own business selling used mobile homes, then turned his focus to owning rental properties across Anderson County — always seeing potential where others saw just another old house.</p>
     <p class="story-text">When Carl passed away in 2020, our family made a decision: we weren't ready to let what he built end with him.</p>
