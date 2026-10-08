@@ -123,7 +123,9 @@ Find the comment `<!-- BIO: Replace this placeholder -->` and edit the text insi
 
 ### Current properties
 - **1305 E Park Ave** — Palestine, TX · Anderson County — tags: Full Renovation, Single-Family, Palestine TX. Has a floor plan (lightbox).
-- **609 S Bowie St** — Palestine, TX — tags: Full Renovation, Historic Home, Palestine TX. No floor plan yet.
+- **609 S Bowie St** — Palestine, TX — tags: Full Renovation, Historic Home, Palestine TX. Has a floor plan (lightbox).
+
+The floor plan feature supports any number of properties — each "View Floor Plan" button has a `data-lightbox="floorplan-XXX"` attribute matching a `<div class="lightbox" id="floorplan-XXX">` block; one shared script in `index.html` wires all of them up generically, no per-property JS needed.
 
 ---
 

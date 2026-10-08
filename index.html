@@ -625,10 +625,12 @@
      NEW PROPERTY: To add another property, duplicate the entire .project-grid div
                    (photo-wrap + sidebar-card together) and place it after the last
                    one. Each listing is its own framed block and they stack
-                   automatically with spacing already built in. Skip the
-                   floorplan-link button/lightbox unless this property has its own
-                   floor plan — those use page-wide IDs, so only one listing per
-                   page can have one without a rename.
+                   automatically with spacing already built in. If it has a floor
+                   plan, give its "View Floor Plan" button a unique
+                   data-lightbox="floorplan-XXX" value and add a matching
+                   <div class="lightbox" id="floorplan-XXX"> block near the bottom
+                   of the page (see the two already there). No JS changes needed —
+                   it's written to handle any number of them.
 ──────────────────────────────────────────────────────────────────────────── -->
 <section class="project-section" id="active-project">
   <div class="section-inner">
@@ -644,7 +646,7 @@
       <!-- ── PROPERTY PHOTO ── -->
       <div class="project-photo-wrap">
         <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
-        <button class="floorplan-link" id="floorplan-open" type="button">⊞ View Floor Plan</button>
+        <button class="floorplan-link" type="button" data-lightbox="floorplan-1305">⊞ View Floor Plan</button>
       </div>
 
       <!-- Property details + CTA -->
@@ -682,6 +684,7 @@
       <!-- ── PROPERTY PHOTO ── -->
       <div class="project-photo-wrap">
         <img class="project-photo" src="images/609-s-bowie-st-1.jpg" alt="609 S Bowie St, Palestine TX" />
+        <button class="floorplan-link" type="button" data-lightbox="floorplan-609">⊞ View Floor Plan</button>
       </div>
 
       <!-- Property details + CTA -->
@@ -716,23 +719,35 @@
   </div>
 </section>
 
-<!-- Floor plan lightbox -->
-<div class="lightbox" id="floorplan-lightbox">
+<!-- Floor plan lightboxes — one per property that has a floor plan.
+     To add another: give the "View Floor Plan" button a unique
+     data-lightbox value, and add a matching .lightbox block below
+     with that same value as its id. No JS changes needed. -->
+<div class="lightbox" id="floorplan-1305">
   <div class="lightbox-inner">
-    <button class="lightbox-close" id="floorplan-close" type="button" aria-label="Close">&times;</button>
+    <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
     <img src="images/1305-e-park-ave-floorplan.jpg" alt="Floor plan — 1305 E Park Ave" />
+  </div>
+</div>
+<div class="lightbox" id="floorplan-609">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <img src="images/609-s-bowie-st-floorplan.jpg" alt="Floor plan — 609 S Bowie St" />
   </div>
 </div>
 <script>
   (function () {
-    var lightbox = document.getElementById("floorplan-lightbox");
-    var openBtn = document.getElementById("floorplan-open");
-    var closeBtn = document.getElementById("floorplan-close");
-    if (!lightbox || !openBtn) return;
-    openBtn.addEventListener("click", function () { lightbox.classList.add("open"); });
-    closeBtn.addEventListener("click", function () { lightbox.classList.remove("open"); });
-    lightbox.addEventListener("click", function (e) {
-      if (e.target === lightbox) lightbox.classList.remove("open");
+    document.querySelectorAll(".floorplan-link").forEach(function (btn) {
+      var target = document.getElementById(btn.getAttribute("data-lightbox"));
+      if (!target) return;
+      btn.addEventListener("click", function () { target.classList.add("open"); });
+    });
+    document.querySelectorAll(".lightbox").forEach(function (box) {
+      var closeBtn = box.querySelector(".lightbox-close");
+      if (closeBtn) closeBtn.addEventListener("click", function () { box.classList.remove("open"); });
+      box.addEventListener("click", function (e) {
+        if (e.target === box) box.classList.remove("open");
+      });
     });
   })();
 </script>
