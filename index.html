@@ -290,6 +290,21 @@
       transition: background 0.15s;
     }
     .floorplan-link:hover { background: var(--bg-deep); }
+    .status-sticker {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      background: var(--bronze);
+      color: var(--on-accent);
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'Libre Franklin', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 8px rgba(36,26,18,0.25);
+    }
     .lightbox {
       display: none;
       position: fixed;
@@ -646,6 +661,7 @@
       <!-- ── PROPERTY PHOTO ── -->
       <div class="project-photo-wrap">
         <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
+        <span class="status-sticker">Almost Finished</span>
         <button class="floorplan-link" type="button" data-lightbox="floorplan-1305">⊞ View Floor Plan</button>
       </div>
 
