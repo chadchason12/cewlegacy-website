@@ -244,6 +244,7 @@
     /* ── ACTIVE LEGACY PROJECT ── */
     .project-section { background: var(--bg-deep); padding-top: 60px; }
     .project-grid {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 44px;
@@ -292,8 +293,9 @@
     .floorplan-link:hover { background: var(--bg-deep); }
     .status-sticker {
       position: absolute;
-      left: 14px;
-      top: 14px;
+      left: 18px;
+      top: 18px;
+      z-index: 2;
       background: var(--bronze);
       color: var(--on-accent);
       border-radius: 20px;
@@ -657,11 +659,11 @@
     <h3 class="active-projects-title">Active Projects</h3>
 
     <div class="project-grid">
+      <span class="status-sticker">Almost Finished</span>
 
       <!-- ── PROPERTY PHOTO ── -->
       <div class="project-photo-wrap">
         <img class="project-photo" src="images/1305-e-park-ave-1.jpg" alt="1305 E Park Ave, Palestine TX" />
-        <span class="status-sticker">Almost Finished</span>
         <button class="floorplan-link" type="button" data-lightbox="floorplan-1305">⊞ View Floor Plan</button>
       </div>
 
