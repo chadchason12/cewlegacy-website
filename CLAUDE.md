@@ -58,7 +58,7 @@ The site is three pages (split from one long page in Sep 2026, so buyers landing
 
 **Home (`index.html`)**
 1. **Nav** — sticky, logo only (no nav-bar tagline text), links to Home / About / Contact / Get Notified
-2. **Active Project** — centered intro headline + paragraph, then a single taupe "diptych" frame holding the property photo and a details/CTA card side by side
+2. **Active Projects** — centered intro headline + paragraph, an "Active Projects" sub-heading, then one taupe "diptych" frame per property (photo + a details/CTA card side by side), stacked with spacing built in. As of Oct 2026 there are two: 1305 E Park Ave, then 609 S Bowie St.
 3. **Flourish divider** — small roofline glyph between sections, echoing the logo
 4. **Get Notified form** — buyer interest form with SMS consent, wired to Formspree, framed to match the photo
 5. **Footer** — italic tagline, copyright, nav links, privacy/terms links
@@ -106,28 +106,24 @@ There's also a warm taupe, `#b7a488`, used (with a faint grain texture) as the "
 
 ---
 
-## Active Legacy Project — how to update
+## Active Projects — how to update
+
+Each property is its own `<div class="project-grid">...</div>` block in `index.html` — a self-contained photo + info card. There are two live as of Oct 2026 (see below); more can be added the same way.
+
+### Adding a new property
+Duplicate an entire `<!-- ── PROPERTY PHOTO ── -->` + `<!-- Property details + CTA -->` pair (the whole `.project-grid` div) and place it after the last one, still inside `<section class="project-section" id="active-project">`. Spacing between listings is automatic (`.project-grid` has its own `margin-top`).
+
+Skip the `floorplan-link` button and the floor plan `<img>`/lightbox markup unless this new property has its own floor plan — those use page-wide IDs (`floorplan-open`, `floorplan-lightbox`, etc.), so only one listing per page can use that exact pattern without renaming the IDs.
 
 ### Property photo
-In `index.html`, find the comment: `<!-- PHOTO: Replace the placeholder below -->`.
-
-There is currently a placeholder div. When a real photo is ready:
-1. Upload the photo to the `images/` folder in the GitHub repo
-2. Replace the `<div class="project-photo-placeholder">` block with:
-   `<img class="project-photo" src="images/FILENAME.jpg" alt="1305 E Park Ave, Palestine TX" />`
+Find the comment `<!-- ── PROPERTY PHOTO ── -->` for the property you're editing, then the `<img class="project-photo" ...>` tag right after it. Change `src=` to the photo's path in `images/`. Upload the photo to the `images/` folder in the repo first.
 
 ### Property bio
-In `index.html`, find the comment: `<!-- BIO: Replace this placeholder -->`.
+Find the comment `<!-- BIO: Replace this placeholder -->` and edit the text inside the nearby `<p class="project-bio">`. 2–4 sentences, her own voice.
 
-Edit the text inside `<p class="project-bio">`. 2–4 sentences in her own voice.
-
-### Adding a second property
-Duplicate the entire `<!-- ── PROPERTY CARD ── -->` block and place it after the first one inside `.project-grid`. The layout stacks automatically.
-
-### Current property details
-- Address: 1305 E Park Ave
-- Location: Palestine, TX · Anderson County
-- Tags: Full Renovation, Single-Family, Palestine TX
+### Current properties
+- **1305 E Park Ave** — Palestine, TX · Anderson County — tags: Full Renovation, Single-Family, Palestine TX. Has a floor plan (lightbox).
+- **609 S Bowie St** — Palestine, TX — tags: Full Renovation, Historic Home, Palestine TX. No floor plan yet.
 
 ---
 
