@@ -45,6 +45,7 @@ After every edit, always commit and push to main. Never hand the user a git comm
 | `contact.html` | Contact page — email, area served, text message policy |
 | `privacy.html` | Privacy Policy — legally required, see restrictions below |
 | `terms.html` | SMS Terms & Conditions — legally required, see restrictions below |
+| `admin.html` | Hidden, PIN-gated page to text every signed-up lead that a property just got listed. Not in the nav — reached via a faint "Admin" link in the footer, or by going straight to `/admin`. See the Notify Leads section below. |
 | `vercel.json` | Clean URL config (removes .html extensions) — do not touch |
 | `CLAUDE.md` | This file |
 
@@ -160,6 +161,20 @@ The confirmation text reads: *"Thanks for signing up with CEW Legacy Homes! We'l
 **`buyer_leads` schema** (in the app's Supabase, not this repo): `id`, `first_name`, `last_name`, `email`, `phone` (E.164, e.g. `+19035550100`), `sms_consent`, `terms_consent`, `source` (always `'website'` from here), `notified_at`, `unsubscribed`, `created_at`, plus nullable preference columns `preferred_bedrooms`, `preferred_bathrooms`, `preferred_sqft_min`, `price_min`, `price_max` — added ahead of time for when the form collects buyer preferences; until then they're just always null. The CEW Legacy app (Chad's separate Next.js/Supabase project, on TestFlight) reads this table to let Holly view leads and send bulk "new listing" texts — that app is a different codebase, not something managed from this repo.
 
 **STOP/opt-out sync.** Twilio's Advanced Opt-Out (Messaging Service → Opt-Out tab) already blocks sends to numbers that have texted STOP and auto-replies on its own — that part is automatic and requires nothing from us. But so `buyer_leads.unsubscribed` reflects reality (rather than the app's lead list going stale), `api/twilio-opt-out.js` is a webhook that reads the inbound message body for STOP/START-family keywords and flips `unsubscribed` accordingly. It needs `SUPABASE_SERVICE_ROLE_KEY` in Vercel's env vars (a real secret — add it directly in Vercel, it bypasses RLS so it must never be exposed client-side or hardcoded in this repo). It's wired up as the Messaging Service's general inbound webhook in the Twilio console (Messaging → Services → the messaging service → **Settings** tab → Incoming Messages / Request URL): `https://cewlegacy.com/api/twilio-opt-out`. Unverified: whether Twilio still forwards a message to this webhook when Advanced Opt-Out intercepts it as a STOP/START keyword, vs. handling it silently at the carrier level and never calling this URL at all — test by texting STOP to the number and checking whether the matching row's `unsubscribed` actually flips in Supabase.
+
+---
+
+## Notify Leads (admin text blast) — built Nov 2026
+
+Holly handles "a property just got listed, text everyone who signed up" herself from the website, rather than through Chad's separate app — Chad's app can still do its own bulk sends if he ever needs to, the two aren't exclusive.
+
+**How it works:** `admin.html` is a hidden page (not in any nav — reached only via a small, low-opacity "Admin" link in the footer, or by typing `/admin` directly). It asks for a 4-digit PIN, then shows a form: pick the property from a dropdown, paste the listing link, edit the message if needed (it has `{{address}}` and `{{link}}` placeholders that get swapped automatically), and hit "Send Text Blast." It posts to `/api/notify-leads.js`.
+
+That function: (1) checks the PIN against `process.env.ADMIN_NOTIFY_PIN` in Vercel — if it doesn't match, nothing happens; (2) reads every row in `buyer_leads` where `sms_consent` is true and `unsubscribed` is not true (using the service role key, since the anon key can only INSERT, not SELECT — see the Twilio section below for why); (3) sends each one an SMS through the same Twilio Messaging Service already approved for A2P 10DLC; (4) stamps `notified_at` on everyone it successfully texted.
+
+**PIN:** `ADMIN_NOTIFY_PIN` needs to be set in Vercel's Environment Variables (Project → Settings → Environment Variables) — it is NOT hardcoded in this repo, same pattern as the Twilio Auth Token. Holly chose `1177`. A 4-digit PIN is a conscious trade-off for simplicity, not a mistake — the page isn't linked anywhere public, and the worst case if someone guessed it is an unwanted text to a handful of leads, not a data or financial risk. Don't "harden" this without asking first; she picked simple on purpose.
+
+**To add a new property to the dropdown:** edit the `<select id="address">` options in `admin.html`.
 
 ---
 

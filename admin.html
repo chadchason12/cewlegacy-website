@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notify Sign-Ups — CEW Legacy Homes</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep:    #f6f0e4;
+      --bg-card:    #f1e8d4;
+      --border:     #d9cbab;
+      --cream:      #241a12;
+      --on-accent:  #f6f0e4;
+      --muted:      #6b5540;
+      --bronze:     #40543a;
+      --bronze-dk:  #2e3e29;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--cream);
+      font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    h1 { font-family: 'Fraunces', serif; font-size: 28px; margin-bottom: 6px; }
+    p.sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 36px;
+      max-width: 460px;
+      width: 100%;
+    }
+
+    label { display: block; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 6px; }
+    .field { margin-bottom: 18px; }
+
+    input[type="text"], input[type="password"], input[type="url"], select, textarea {
+      width: 100%;
+      padding: 11px 13px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--cream);
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--bronze); }
+
+    .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--on-accent);
+      background: var(--bronze);
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    button:hover { background: var(--bronze-dk); }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    #result { margin-top: 18px; font-size: 14px; padding: 12px 14px; border-radius: 3px; display: none; }
+    #result.success { display: block; background: #e4ead9; border: 1px solid var(--bronze); color: var(--bronze-dk); }
+    #result.error { display: block; background: #f3dede; border: 1px solid #a33; color: #7a1f1f; }
+
+    #gate { text-align: center; }
+    #sendPanel { display: none; }
+
+    a.back { display: inline-block; margin-top: 20px; font-size: 13px; color: var(--muted); text-decoration: none; }
+    a.back:hover { color: var(--cream); }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Notify Sign-Ups</h1>
+    <p class="sub">Text everyone who signed up that a home just hit the market.</p>
+
+    <div id="gate">
+      <div class="field">
+        <label for="pin">PIN</label>
+        <input type="password" id="pin" inputmode="numeric" autocomplete="off" placeholder="····" />
+      </div>
+      <button id="unlockBtn">Unlock</button>
+    </div>
+
+    <form id="sendPanel">
+      <div class="field">
+        <label for="address">Property</label>
+        <select id="address">
+          <option value="1305 E Park Ave">1305 E Park Ave</option>
+          <option value="609 S Bowie St">609 S Bowie St</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="link">Listing Link</label>
+        <input type="url" id="link" placeholder="https://www.zillow.com/..." required />
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message">Good news! {{address}} just hit the market. Take a look: {{link}}. Reply STOP to opt out.</textarea>
+        <p class="hint">{{address}} and {{link}} get swapped for the property and link above automatically.</p>
+      </div>
+
+      <button type="submit" id="sendBtn">Send Text Blast</button>
+    </form>
+
+    <div id="result"></div>
+    <a class="back" href="/">&larr; Back to the website</a>
+  </div>
+
+  <script>
+    const pinInput = document.getElementById('pin');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const gate = document.getElementById('gate');
+    const sendPanel = document.getElementById('sendPanel');
+    const result = document.getElementById('result');
+    let enteredPin = '';
+
+    function showResult(text, isError) {
+      result.textContent = text;
+      result.className = isError ? 'error' : 'success';
+    }
+
+    unlockBtn.addEventListener('click', () => {
+      if (!pinInput.value.trim()) {
+        showResult('Enter your PIN first.', true);
+        return;
+      }
+      enteredPin = pinInput.value.trim();
+      gate.style.display = 'none';
+      sendPanel.style.display = 'block';
+      result.style.display = 'none';
+    });
+
+    pinInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') unlockBtn.click();
+    });
+
+    sendPanel.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const sendBtn = document.getElementById('sendBtn');
+      const address = document.getElementById('address').value;
+      const link = document.getElementById('link').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!link) {
+        showResult('Paste the listing link first.', true);
+        return;
+      }
+
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending…';
+      result.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/notify-leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pin: enteredPin, address, link, message }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          if (res.status === 401) {
+            showResult('Wrong PIN — unlock again.', true);
+            sendPanel.style.display = 'none';
+            gate.style.display = 'block';
+            pinInput.value = '';
+          } else {
+            showResult(data.error || 'Something went wrong. Try again.', true);
+          }
+        } else if (data.sent === 0) {
+          showResult('No one is signed up to notify yet.', false);
+        } else {
+          showResult(
+            `Sent to ${data.sent} sign-up${data.sent === 1 ? '' : 's'}` +
+            (data.failed ? ` (${data.failed} failed to send).` : '.'),
+            false
+          );
+        }
+      } catch (err) {
+        showResult('Could not reach the server. Check your connection and try again.', true);
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send Text Blast';
+      }
+    });
+  </script>
+
+</body>
+</html>
