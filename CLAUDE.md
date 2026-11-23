@@ -43,6 +43,7 @@ After every edit, always commit and push to main. Never hand the user a git comm
 | `index.html` | Home page — property + notify form only |
 | `about.html` | About page — hero + family story, company values |
 | `contact.html` | Contact page — email, area served, text message policy |
+| `quote.html` | Remodel quote form at `/quote` — see the Remodel quote form section below |
 | `privacy.html` | Privacy Policy — legally required, see restrictions below |
 | `terms.html` | SMS Terms & Conditions — legally required, see restrictions below |
 | `admin.html` | Hidden, PIN-gated page to text every signed-up lead that a property just got listed. Not in the nav — reached via a faint "Admin" link in the footer, or by going straight to `/admin`. See the Notify Leads section below. |
@@ -58,7 +59,7 @@ Each HTML page is fully self-contained (own `<style>` block, own copy of shared 
 The site is three pages (split from one long page in Sep 2026, so buyers landing from the yard sign QR code hit property + signup immediately with nothing else in the way; Contact was later split out of About into its own page too):
 
 **Home (`index.html`)**
-1. **Nav** — sticky, logo only (no nav-bar tagline text), links to Home / About / Contact / Get Notified
+1. **Nav** — sticky, logo only (no nav-bar tagline text), links to Home / About / Contact / Free Remodel Quote / Get Notified
 2. **Active Projects** — centered intro headline + paragraph, an "Active Projects" sub-heading, then one taupe "diptych" frame per property (photo + a details/CTA card side by side), stacked with spacing built in. As of Oct 2026 there are two: 1305 E Park Ave, then 609 S Bowie St.
 3. **Flourish divider** — small roofline glyph between sections, echoing the logo
 4. **Get Notified form** — buyer interest form with SMS consent, wired to Formspree, framed to match the photo
@@ -77,7 +78,7 @@ The site is three pages (split from one long page in Sep 2026, so buyers landing
 
 The site also has a thin forest-green accent bar above the nav on every page, and the nav has a soft shadow instead of a hard border line.
 
-Cross-page links use absolute paths (`/`, `/about`, `/contact`, `/#notify`) since they now point across pages, not to anchors on one page.
+Cross-page links use absolute paths (`/`, `/about`, `/contact`, `/quote`, `/#notify`) since they now point across pages, not to anchors on one page.
 
 ---
 
@@ -146,6 +147,24 @@ The submit button says "Yes, Notify Me." A compliance footer repeats STOP/HELP i
 
 ---
 
+## Remodel quote form
+
+`quote.html` is served at `/quote`. The page offers a free remodel quote from CEW Legacy Homes. People can also get the link by texting **QUOTE** to **(903) 485-1177** — a second Twilio number, kept separate from the listing-alert line at (903) 522-5109.
+
+The form posts to the same Formspree endpoint (`xyezgzwl`) as Get Notified, with hidden fields `_subject` = "New Remodel Quote Request" and `form_type` = `remodel_quote` so submissions are easy to tell apart in email. It does **not** call `/api/send-confirmation` (that path is only for listing signups).
+
+**Fields:** name, mobile phone, email, property address, project type, budget range, timeline, and project description.
+
+**Consent checkboxes (two separate — keep them that way):**
+1. SMS consent — optional, unchecked by default, and not required to submit. Agrees to texts about the quote request.
+2. T&C acknowledgment — required.
+
+`privacy.html` and `terms.html` each include a "Remodel quote messages" section covering texts to (903) 485-1177 and the `/quote` form opt-in. Do not remove those sections or weaken the existing listing-alert or no-sharing language.
+
+Home, About, Contact, and the quote page include a "Free Remodel Quote" link in the nav and footer.
+
+---
+
 ## Twilio A2P SMS
 
 A Twilio A2P 10DLC campaign was submitted and approved on September 15, 2026. Campaign SID `CM27f24e935951510c2a464b03c19aad84`, Messaging Service SID `MGd22f1ae49733f6d0d5841810b20d4aad`, sending number `(903) 522-5109`.
@@ -180,7 +199,7 @@ That function: (1) checks the PIN against `process.env.ADMIN_NOTIFY_PIN` in Verc
 
 ## SMS compliance pages — do not modify without understanding the consequences
 
-`privacy.html` and `terms.html` are required for Twilio's A2P 10DLC carrier approval. They must remain live at `cewlegacy.com/privacy` and `cewlegacy.com/terms`.
+`privacy.html` and `terms.html` are required for Twilio's A2P 10DLC carrier approval. They must remain live at `cewlegacy.com/privacy` and `cewlegacy.com/terms`. They cover both listing-alert texts and remodel-quote texts (the "Remodel quote messages" sections).
 
 **Do not:**
 - Remove these pages
@@ -197,7 +216,7 @@ The Twilio A2P 10DLC campaign was approved on 2026-09-15. `sms-consent-script.ht
 
 - **Email:** info@cewlegacy.com (used in the site, in Formspree, and in Twilio)
 - **Old email:** cewlegacyllc@gmail.com — this is outdated, do not use it
-- If the email ever changes, it appears in: `index.html` (multiple places), `privacy.html`, `terms.html`
+- If the email ever changes, it appears in: `index.html` (multiple places), `quote.html`, `privacy.html`, `terms.html`
 
 ---
 
