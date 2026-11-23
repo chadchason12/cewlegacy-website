@@ -151,7 +151,7 @@ The submit button says "Yes, Notify Me." A compliance footer repeats STOP/HELP i
 
 `quote.html` is served at `/quote`. The page offers a free remodel quote from CEW Legacy Homes. People can also get the link by texting **QUOTE** to **(903) 485-1177** — a second Twilio number, kept separate from the listing-alert line at (903) 522-5109.
 
-The form posts to the same Formspree endpoint (`xyezgzwl`) as Get Notified, with hidden fields `_subject` = "New Remodel Quote Request" and `form_type` = `remodel_quote` so submissions are easy to tell apart in email. It does **not** call `/api/send-confirmation` (that path is only for listing signups).
+The form posts to its own Formspree endpoint (`mnpdolrg`). The Notify Me signup uses `xyezgzwl`. Hidden fields `_subject` = "New Remodel Quote Request" and `form_type` = `remodel_quote` are kept so submissions stay clearly labeled in email. It does **not** call `/api/send-confirmation` (that path is only for listing signups).
 
 **Fields:** name, mobile phone, email, property address, project type, budget range, timeline, and project description.
 
