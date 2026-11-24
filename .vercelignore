@@ -1,0 +1,17 @@
+# Internal notes and other non-site files. Do not deploy these.
+# Keep html, images, api/, vercel.json (and package.json if added later).
+CLAUDE.md
+*.md
+*.patch
+*.bak
+*.bak_*
+.env
+.env.*
+notes/
+docs/
+scripts/
+test/
+tests/
+__tests__/
+*.test.js
+*.spec.js
