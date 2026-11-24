@@ -698,6 +698,8 @@
           params.set("timeline", val("timeline"));
           params.set("description", val("description"));
           params.set("_gotcha", val("_gotcha"));
+          const sms = form.elements["sms_consent"];
+          params.set("sms_consent", sms && sms.checked ? "yes" : "no");
           fetch("https://cew-remodel-quotes-9735-prod.twil.io/quote-alert", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
