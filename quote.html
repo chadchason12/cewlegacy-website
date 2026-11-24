@@ -629,6 +629,12 @@
               </div>
             </div>
 
+
+            <div class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+              <label for="gotcha">Leave this field empty</label>
+              <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+
             <button type="submit" class="form-submit-btn">Request My Quote</button>
             <p class="form-note">Msg &amp; data rates may apply. Message frequency varies. Reply STOP to opt out at any time. Reply HELP for help or contact us at <a href="mailto:info@cewlegacy.com" style="color:var(--muted)">info@cewlegacy.com</a>. See our <a href="/privacy" style="color:var(--muted)">Privacy Policy</a> and <a href="/terms" style="color:var(--muted)">SMS Terms</a>.</p>
           </form>
@@ -677,6 +683,29 @@
         headers: { Accept: "application/json" }
       });
       if (res.ok) {
+        try {
+          const params = new URLSearchParams();
+          const val = function(name) {
+            const el = form.elements[name];
+            return el ? el.value : "";
+          };
+          params.set("name", val("name"));
+          params.set("phone", val("phone"));
+          params.set("email", val("email"));
+          params.set("property_address", val("property_address"));
+          params.set("project_type", val("project_type"));
+          params.set("budget_range", val("budget_range"));
+          params.set("timeline", val("timeline"));
+          params.set("description", val("description"));
+          params.set("_gotcha", val("_gotcha"));
+          fetch("https://cew-remodel-quotes-9735-prod.twil.io/quote-alert", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params,
+            keepalive: true,
+            mode: "cors"
+          }).catch(function() {});
+        } catch (err) {}
         form.style.display = "none";
         document.getElementById("form-success").style.display = "block";
       } else {

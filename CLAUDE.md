@@ -153,6 +153,8 @@ The submit button says "Yes, Notify Me." A compliance footer repeats STOP/HELP i
 
 The form posts to its own Formspree endpoint (`mnpdolrg`). The Notify Me signup uses `xyezgzwl`. Hidden fields `_subject` = "New Remodel Quote Request" and `form_type` = `remodel_quote` are kept so submissions stay clearly labeled in email. It does **not** call `/api/send-confirmation` (that path is only for listing signups).
 
+After Formspree succeeds, `quote.html` also fire-and-forgets a POST to the public Twilio Function `https://cew-remodel-quotes-9735-prod.twil.io/quote-alert`, which texts a staff allowlist from the listing-alert Messaging Service (`MGd22f1ae49733f6d0d5841810b20d4aad`, (903) 522-5109). Recipients are hardcoded in the Function (never taken from the request). The page sends name, phone, email, property_address, project_type, budget_range, timeline, description, and the `_gotcha` honeypot. The Function caps alerts at 10/hour and 30/day globally (and 3/hour per IP) in Twilio Sync document `quote-alert-counter` on service `IS8a45e3c712e14fd515931cb5490d2d41`. Do not replace `/sms` or `/voice` on that Serverless service when updating `/quote-alert`; reuse their currently live Function Version SIDs. The QUOTE auto-reply on `/sms` stays undeployed until the remodel-quotes A2P campaign is approved.
+
 **Fields:** name, mobile phone, email, property address, project type, budget range, timeline, and project description.
 
 **Consent checkboxes (two separate — keep them that way):**
