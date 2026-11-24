@@ -785,6 +785,8 @@
           params.set("_gotcha", val("_gotcha"));
           const sms = form.elements["sms_consent"];
           params.set("sms_consent", sms && sms.checked ? "yes" : "no");
+          const sourceParam = new URLSearchParams(window.location.search).get("source");
+          params.set("source", sourceParam && sourceParam.trim() ? sourceParam.trim().slice(0, 40) : "Website form");
           fetch("https://cew-remodel-quotes-9735-prod.twil.io/quote-alert", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
